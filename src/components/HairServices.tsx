@@ -16,9 +16,9 @@ import { useAllHairServices } from '../graphql/useAllHairServices'
 const HairServices: React.FC = () => {
   const hairServices = useAllHairServices()?.allHairServicesYaml?.edges
   return (
-    <Box pt={8}>
+    <Box as="section" id="services" minHeight={['auto', '80vh']} pt={8}>
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
-        <Heading fontSize={'8xl'} fontWeight={200}>
+        <Heading as="h2" fontSize={'8xl'} fontWeight={200} textAlign="center">
           Hair Services
         </Heading>
         <Text color={'gray.400'} fontSize={'xl'}>

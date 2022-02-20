@@ -8,36 +8,18 @@ import {
 } from '@chakra-ui/react'
 import { FaMapPin, FaMobileAlt, FaRegEnvelope } from 'react-icons/fa'
 import clientProfile from '../../data/client-profile.json'
+import AboutUs from '../components/AboutUs'
 import { Hero } from '../components/App/Hero'
 import { Layout } from '../components/App/Layout'
 import HairServices from '../components/HairServices'
+import NailServices from '../components/NailServices'
 
 const Index = () => (
   <Layout>
     <Hero />
-    <Box as="section" id="services" minHeight={['auto', '80vh']}>
-      {/* <Text as="h2" fontSize="6xl" align="center" fontWeight="thin" py={4}>
-        Services
-      </Text> */}
-      <HairServices />
-    </Box>
-    <Box
-      as="section"
-      id="about"
-      height={['auto', '80vh']}
-      background="gray.200"
-    >
-      <Text
-        as="h2"
-        fontSize="6xl"
-        align="center"
-        fontWeight="thin"
-        py={4}
-        color="gray.900"
-      >
-        About
-      </Text>
-    </Box>
+    <HairServices />
+    <NailServices />
+    <AboutUs />
     <Box as="section" id="contact-us" height="auto" pb="4rem">
       <Text as="h2" fontSize="6xl" align="center" fontWeight="thin" py="2rem">
         Get In Touch
