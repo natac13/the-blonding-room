@@ -10,14 +10,16 @@ import { FaMapPin, FaMobileAlt, FaRegEnvelope } from 'react-icons/fa'
 import clientProfile from '../../data/client-profile.json'
 import { Hero } from '../components/App/Hero'
 import { Layout } from '../components/App/Layout'
+import HairServices from '../components/HairServices'
 
 const Index = () => (
   <Layout>
     <Hero />
-    <Box as="section" id="services" height={['auto', '80vh']}>
-      <Text as="h2" fontSize="6xl" align="center" fontWeight="thin" py={4}>
+    <Box as="section" id="services" minHeight={['auto', '80vh']}>
+      {/* <Text as="h2" fontSize="6xl" align="center" fontWeight="thin" py={4}>
         Services
-      </Text>
+      </Text> */}
+      <HairServices />
     </Box>
     <Box
       as="section"

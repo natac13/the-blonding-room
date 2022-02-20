@@ -9,6 +9,7 @@ import {
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react'
+import { StaticImage } from 'gatsby-plugin-image'
 import { DarkModeSwitch } from '../common/DarkModeSwitch'
 
 const LINKS = [
@@ -32,7 +33,7 @@ const NavLink: React.FC<{ href: string }> = ({ children, href }) => (
     py={1}
     textTransform="uppercase"
     fontWeight="light"
-    color={useColorModeValue('secondary.800', 'secondary.100')}
+    color={useColorModeValue('primary.800', 'primary.100')}
     href={href}
   >
     {children}
@@ -60,7 +61,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
         <Flex alignItems={'center'} w="100%">
           <Heading as="h1" fontSize="3xl" flex="1 0">
             <Link href="#home" _hover={{ textDecoration: 'none' }}>
-              The blonding room
+              <StaticImage
+                src="../../images/sign-cropped.png"
+                alt="Main logo"
+                blurredOptions={{}}
+                height={65}
+              />
+              {/* The blonding room */}
             </Link>
           </Heading>
           <Flex
@@ -90,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
       </Flex>
 
       {isOpen ? (
-        <Box pb={4} display={{ md: 'none' }}>
+        <Box pb={4} pt={4} display={{ md: 'none' }}>
           <Stack as={'nav'} spacing={4}>
             {LINKS.map((link) => (
               <NavLink key={link} href={link.href}>
