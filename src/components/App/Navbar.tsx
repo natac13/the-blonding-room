@@ -1,6 +1,10 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
+import * as React from 'react'
+import { animated, useTrail } from 'react-spring'
+import { BsChevronDoubleDown } from 'react-icons/bs'
 import {
   Box,
+  Button,
   Flex,
   Heading,
   IconButton,
@@ -27,7 +31,7 @@ const LINKS = [
   },
 ]
 
-const NavLink: React.FC<{ href: string }> = ({ children, href }) => (
+const NavLink: React.FC<{ href: string }> = ({ children, href, ...rest }) => (
   <Link
     px={2}
     py={1}
@@ -35,6 +39,7 @@ const NavLink: React.FC<{ href: string }> = ({ children, href }) => (
     fontWeight="light"
     color={useColorModeValue('primary.800', 'primary.100')}
     href={href}
+    {...rest}
   >
     {children}
   </Link>
@@ -42,8 +47,19 @@ const NavLink: React.FC<{ href: string }> = ({ children, href }) => (
 
 export interface NavbarProps {}
 
+const AnimatedLink = animated(NavLink)
+
 export const Navbar: React.FC<NavbarProps> = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const [reveal, setReveal] = React.useState(false)
+
+  const linkTrail = useTrail(LINKS?.length, {
+    // from: {
+    //   opacity: 0,
+    // },
+    transform: `translateY(${reveal ? '0px' : '-20px'})`,
+    opacity: reveal ? 1 : 0,
+  })
 
   return (
     <Box
@@ -57,6 +73,53 @@ export const Navbar: React.FC<NavbarProps> = () => {
       right={0}
       zIndex={100}
     >
+      <Box
+        position="absolute"
+        sx={{
+          position: 'absolute',
+          left: '50%',
+          right: '50%',
+          height: '60px',
+          bottom: '-50%',
+          width: '72px',
+          display: 'grid',
+          placeItems: 'center',
+          transform: 'translateX(-50%)',
+          '&::before': {
+            content: '""',
+            width: 0,
+            height: 0,
+            borderStyle: 'solid',
+            borderColor: 'black transparent transparent transparent',
+            borderWidth: '36px 36px 0 36px',
+            position: 'absolute',
+            left: '50%',
+            right: '50%',
+            transform: 'translateX(-50%)',
+          },
+        }}
+      >
+        <IconButton
+          onClick={() => {
+            setReveal((state) => !state)
+          }}
+          aria-label="Show Links"
+          sx={{
+            backgroundColor: 'transparent',
+            outline: 'none',
+            color: 'primary',
+            transform: 'translateX(1px)',
+            '&:hover, &:focus, &:active': {
+              boxShadow: 'unset',
+              outline: 'unset',
+              outlineOffset: 'unset',
+              backgroundColor: 'transparent',
+            },
+          }}
+        >
+          <BsChevronDoubleDown size={25} />
+        </IconButton>
+      </Box>
       <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
         <Flex alignItems={'center'} w="100%">
           <Heading as="h1" fontSize="3xl" flex="1 0">
@@ -77,10 +140,14 @@ export const Navbar: React.FC<NavbarProps> = () => {
             justifyContent="space-evenly"
             transform="translateX(18px)"
           >
-            {LINKS.map((link) => (
-              <NavLink key={link} href={link.href}>
-                {link.text}
-              </NavLink>
+            {linkTrail.map((styles, idx) => (
+              <AnimatedLink
+                style={styles}
+                key={LINKS[idx]?.text}
+                href={LINKS[idx].href}
+              >
+                {LINKS[idx].text}
+              </AnimatedLink>
             ))}
           </Flex>
           <IconButton
