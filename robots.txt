@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+Sitemap: https://www.theblondingroom.ca/sitemap/sitemap-index.xml
+Host: https://www.theblondingroom.ca
