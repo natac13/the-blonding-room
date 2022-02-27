@@ -4006,6 +4006,11 @@
   dependencies:
     "open" "^7.0.3"
 
+"bezier-easing@^2.1.0":
+  "integrity" "sha1-wE3+i5JtbsrKGBPWn/F5t8ICXYY="
+  "resolved" "https://registry.npmjs.org/bezier-easing/-/bezier-easing-2.1.0.tgz"
+  "version" "2.1.0"
+
 "big.js@^5.2.2":
   "integrity" "sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ=="
   "resolved" "https://registry.npmjs.org/big.js/-/big.js-5.2.2.tgz"
@@ -9907,6 +9912,13 @@
   "resolved" "https://registry.npmjs.org/pako/-/pako-1.0.11.tgz"
   "version" "1.0.11"
 
+"parallax-controller@^1.3.3":
+  "integrity" "sha512-GDHvMl3UbKna0bOwwB8Q+dBkpIo2DlJFj3WJElDHZFFEI47aoqQND3paHrqFez1Z64AVQSWeHax+4e6ljE9Sew=="
+  "resolved" "https://registry.npmjs.org/parallax-controller/-/parallax-controller-1.3.3.tgz"
+  "version" "1.3.3"
+  dependencies:
+    "bezier-easing" "^2.1.0"
+
 "param-case@^3.0.4":
   "integrity" "sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A=="
   "resolved" "https://registry.npmjs.org/param-case/-/param-case-3.0.4.tgz"
@@ -10709,7 +10721,7 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
-"react-dom@^16.8.0  || ^17.0.0", "react-dom@^16.8.0 || 17.x", "react-dom@^16.9.0 || ^17.0.0", "react-dom@^17.0.1", "react-dom@>=16.8 || ^17.0.0", "react-dom@>=16.8.6", "react-dom@15.x || 16.x || 17.x":
+"react-dom@^16.8.0  || ^17.0.0", "react-dom@^16.8.0 || 17.x", "react-dom@^16.8.0-0 || >=17.0.1", "react-dom@^16.9.0 || ^17.0.0", "react-dom@^17.0.1", "react-dom@>=16.8 || ^17.0.0", "react-dom@>=16.8.6", "react-dom@15.x || 16.x || 17.x":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -10789,6 +10801,13 @@
     "use-callback-ref" "^1.2.3"
     "use-sidecar" "^1.0.1"
 
+"react-scroll-parallax@^3.0.3":
+  "integrity" "sha512-GDmCk6PmHBZg9+Kb3P5hntr+MmVZrAv1EEyrbF1wXzS8TqOYDsoUuJYS9xtm/hi8JP0DywzE9oXfVNmDykHA/w=="
+  "resolved" "https://registry.npmjs.org/react-scroll-parallax/-/react-scroll-parallax-3.0.3.tgz"
+  "version" "3.0.3"
+  dependencies:
+    "parallax-controller" "^1.3.3"
+
 "react-side-effect@^2.1.0":
   "integrity" "sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ=="
   "resolved" "https://registry.npmjs.org/react-side-effect/-/react-side-effect-2.1.1.tgz"
@@ -10815,7 +10834,7 @@
     "invariant" "^2.2.4"
     "tslib" "^1.0.0"
 
-"react@*", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.3.0 || ^17.0.0", "react@^16.8.0  || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^16.9.0 || ^17.0.0", "react@^17.0.1", "react@>=16.11", "react@>=16.3.0", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@15.x || 16.x || 17.x", "react@17.0.2":
+"react@*", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.3.0 || ^17.0.0", "react@^16.8.0  || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^16.8.0-0 || >=17.0.1", "react@^16.9.0 || ^17.0.0", "react@^17.0.1", "react@>=16.11", "react@>=16.3.0", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@15.x || 16.x || 17.x", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

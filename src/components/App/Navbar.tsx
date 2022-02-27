@@ -1,28 +1,16 @@
-import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
-import * as React from 'react'
-import {
-  config as rsConfig,
-  animated,
-  useSpring,
-  useTrail,
-  useChain,
-} from 'react-spring'
-import { BsChevronDoubleDown } from 'react-icons/bs'
 import {
   Box,
-  Button,
   Flex,
-  Heading,
   IconButton,
   Link,
-  Stack,
+  Text,
   useColorModeValue,
   useDisclosure,
   useMediaQuery,
-  Text,
 } from '@chakra-ui/react'
-import { StaticImage } from 'gatsby-plugin-image'
-import { DarkModeSwitch } from '../common/DarkModeSwitch'
+import * as React from 'react'
+import { BsChevronDoubleDown } from 'react-icons/bs'
+import { animated, config as rsConfig, useSpring, useTrail } from 'react-spring'
 
 const LINKS = [
   {
@@ -45,6 +33,7 @@ const NavLink: React.FC<{ href: string }> = ({ children, href, ...rest }) => (
     py={1}
     textTransform="uppercase"
     fontWeight="light"
+    fontSize="large"
     color={useColorModeValue('primary.800', 'primary.100')}
     href={href}
     {...rest}
@@ -63,7 +52,6 @@ export const Navbar: React.FC<NavbarProps> = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [reveal, setReveal] = React.useState(false)
   const [isMobile] = useMediaQuery('(max-width: 30em)')
-  console.log({ isMobile })
 
   const linkTrail = useTrail(LINKS?.length, {
     transform: `translate${isMobile ? 'X' : 'Y'}(${reveal ? '0px' : '-20px'})`,
@@ -75,13 +63,12 @@ export const Navbar: React.FC<NavbarProps> = () => {
     height: reveal ? (isMobile ? '160px' : '60px') : '0px',
     config: rsConfig.molasses,
   })
+
   const titleSpring = useSpring({
     opacity: reveal ? 1 : 0,
     config: rsConfig.molasses,
     delay: 200,
   })
-
-  console.log({ navSpring: navSpring })
 
   return (
     <Box
@@ -129,7 +116,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             backgroundColor: 'transparent',
             outline: 'none',
             color: 'primary',
-            transform: 'translate(1px, -6px)',
+            transform: 'translate(0px, -6px)',
             '&:hover, &:focus, &:active': {
               boxShadow: 'unset',
               outline: 'unset',
@@ -179,18 +166,6 @@ export const Navbar: React.FC<NavbarProps> = () => {
           </Text>
         </AnimatedBox>
       </AnimatedFlex>
-
-      {/* {isOpen ? (
-        <Box pb={4} pt={4} display={{ md: 'none' }}>
-          <Stack as={'nav'} spacing={4}>
-            {LINKS.map((link) => (
-              <NavLink key={link} href={link.href}>
-                {link.text}
-              </NavLink>
-            ))}
-          </Stack>
-        </Box>
-      ) : null} */}
     </Box>
   )
 }
