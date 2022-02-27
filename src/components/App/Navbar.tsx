@@ -19,6 +19,7 @@ import {
   useColorModeValue,
   useDisclosure,
   useMediaQuery,
+  Text,
 } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import { DarkModeSwitch } from '../common/DarkModeSwitch'
@@ -61,7 +62,8 @@ const AnimatedFlex = animated(Flex)
 export const Navbar: React.FC<NavbarProps> = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [reveal, setReveal] = React.useState(false)
-  const isMobile = useMediaQuery('max-width: 30em')
+  const [isMobile] = useMediaQuery('(max-width: 30em)')
+  console.log({ isMobile })
 
   const linkTrail = useTrail(LINKS?.length, {
     transform: `translate${isMobile ? 'X' : 'Y'}(${reveal ? '0px' : '-20px'})`,
@@ -70,8 +72,13 @@ export const Navbar: React.FC<NavbarProps> = () => {
   })
 
   const navSpring = useSpring({
-    height: reveal ? (isMobile ? '160px' : '42px') : '0px',
+    height: reveal ? (isMobile ? '160px' : '60px') : '0px',
     config: rsConfig.molasses,
+  })
+  const titleSpring = useSpring({
+    opacity: reveal ? 1 : 0,
+    config: rsConfig.molasses,
+    delay: 200,
   })
 
   console.log({ navSpring: navSpring })
@@ -81,7 +88,6 @@ export const Navbar: React.FC<NavbarProps> = () => {
       bg={useColorModeValue('primary.50', 'black')}
       px={4}
       py={2}
-      as="nav"
       position="fixed"
       top="0"
       left={0}
@@ -137,6 +143,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
       </Box>
       <AnimatedFlex
         style={navSpring}
+        flexDirection={isMobile ? 'row' : 'column'}
         overflow="hidden"
         alignItems={'center'}
         justifyContent={'center'}
@@ -149,6 +156,8 @@ export const Navbar: React.FC<NavbarProps> = () => {
           justifyContent="space-evenly"
           transform="translateX(18px)"
           height="100%"
+          width={'100%'}
+          order={isMobile ? 0 : 1}
         >
           {linkTrail.map((styles, idx) => (
             <AnimatedLink
@@ -160,9 +169,18 @@ export const Navbar: React.FC<NavbarProps> = () => {
             </AnimatedLink>
           ))}
         </Flex>
+        <AnimatedBox
+          style={titleSpring}
+          alignSelf={isMobile ? 'flex-end' : 'center'}
+          order={isMobile ? 1 : 0}
+        >
+          <Text fontSize="small" pb={{ base: '0px', sm: '2px' }}>
+            The Blonding room
+          </Text>
+        </AnimatedBox>
       </AnimatedFlex>
 
-      {isOpen ? (
+      {/* {isOpen ? (
         <Box pb={4} pt={4} display={{ md: 'none' }}>
           <Stack as={'nav'} spacing={4}>
             {LINKS.map((link) => (
@@ -172,7 +190,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             ))}
           </Stack>
         </Box>
-      ) : null}
+      ) : null} */}
     </Box>
   )
 }
