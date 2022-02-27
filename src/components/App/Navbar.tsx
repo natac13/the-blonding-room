@@ -1,6 +1,12 @@
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons'
 import * as React from 'react'
-import { animated, useTrail } from 'react-spring'
+import {
+  config as rsConfig,
+  animated,
+  useSpring,
+  useTrail,
+  useChain,
+} from 'react-spring'
 import { BsChevronDoubleDown } from 'react-icons/bs'
 import {
   Box,
@@ -12,6 +18,7 @@ import {
   Stack,
   useColorModeValue,
   useDisclosure,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import { DarkModeSwitch } from '../common/DarkModeSwitch'
@@ -48,18 +55,26 @@ const NavLink: React.FC<{ href: string }> = ({ children, href, ...rest }) => (
 export interface NavbarProps {}
 
 const AnimatedLink = animated(NavLink)
+const AnimatedBox = animated(Box)
+const AnimatedFlex = animated(Flex)
 
 export const Navbar: React.FC<NavbarProps> = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [reveal, setReveal] = React.useState(false)
+  const isMobile = useMediaQuery('max-width: 30em')
 
   const linkTrail = useTrail(LINKS?.length, {
-    // from: {
-    //   opacity: 0,
-    // },
-    transform: `translateY(${reveal ? '0px' : '-20px'})`,
+    transform: `translate${isMobile ? 'X' : 'Y'}(${reveal ? '0px' : '-20px'})`,
     opacity: reveal ? 1 : 0,
+    delay: isMobile ? 150 : 50,
   })
+
+  const navSpring = useSpring({
+    height: reveal ? (isMobile ? '160px' : '42px') : '0px',
+    config: rsConfig.molasses,
+  })
+
+  console.log({ navSpring: navSpring })
 
   return (
     <Box
@@ -80,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
           left: '50%',
           right: '50%',
           height: '60px',
-          bottom: '-50%',
+          bottom: -12,
           width: '72px',
           display: 'grid',
           placeItems: 'center',
@@ -108,7 +123,7 @@ export const Navbar: React.FC<NavbarProps> = () => {
             backgroundColor: 'transparent',
             outline: 'none',
             color: 'primary',
-            transform: 'translateX(1px)',
+            transform: 'translate(1px, -6px)',
             '&:hover, &:focus, &:active': {
               boxShadow: 'unset',
               outline: 'unset',
@@ -120,48 +135,32 @@ export const Navbar: React.FC<NavbarProps> = () => {
           <BsChevronDoubleDown size={25} />
         </IconButton>
       </Box>
-      <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-        <Flex alignItems={'center'} w="100%">
-          <Heading as="h1" fontSize="3xl" flex="1 0">
-            <Link href="#home" _hover={{ textDecoration: 'none' }}>
-              <StaticImage
-                src="../../images/sign-cropped.png"
-                alt="Main logo"
-                blurredOptions={{}}
-                height={65}
-              />
-              {/* The blonding room */}
-            </Link>
-          </Heading>
-          <Flex
-            as={'nav'}
-            flex="2 1"
-            display={{ base: 'none', md: 'flex' }}
-            justifyContent="space-evenly"
-            transform="translateX(18px)"
-          >
-            {linkTrail.map((styles, idx) => (
-              <AnimatedLink
-                style={styles}
-                key={LINKS[idx]?.text}
-                href={LINKS[idx].href}
-              >
-                {LINKS[idx].text}
-              </AnimatedLink>
-            ))}
-          </Flex>
-          <IconButton
-            borderRadius={0}
-            variant="outline"
-            size={'md'}
-            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-            aria-label={'Open Menu'}
-            display={{ md: 'none' }}
-            onClick={isOpen ? onClose : onOpen}
-          />
-          <Box flex="1 0" display={['none', 'flex']} />
+      <AnimatedFlex
+        style={navSpring}
+        overflow="hidden"
+        alignItems={'center'}
+        justifyContent={'center'}
+      >
+        <Flex
+          as={'nav'}
+          flex="2 1"
+          display={'flex'}
+          flexDirection={{ base: 'column', md: 'row' }}
+          justifyContent="space-evenly"
+          transform="translateX(18px)"
+          height="100%"
+        >
+          {linkTrail.map((styles, idx) => (
+            <AnimatedLink
+              style={styles}
+              key={LINKS[idx]?.text}
+              href={LINKS[idx].href}
+            >
+              {LINKS[idx].text}
+            </AnimatedLink>
+          ))}
         </Flex>
-      </Flex>
+      </AnimatedFlex>
 
       {isOpen ? (
         <Box pb={4} pt={4} display={{ md: 'none' }}>
