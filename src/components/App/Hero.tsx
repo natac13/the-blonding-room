@@ -13,7 +13,7 @@ export const Hero: React.FC = () => {
   const couchParallax = useParallax<HTMLDivElement>({
     speed: 6,
     translateY: [0, 300],
-    opacity: [-0.3, 0.7],
+    opacity: [-0.2, 0.7],
   })
   return (
     <Box
@@ -52,7 +52,7 @@ export const Hero: React.FC = () => {
         />
       </Box>
       <Box
-        width="30%"
+        width="25%"
         ref={couchParallax.ref}
         position="absolute"
         zIndex={2}
