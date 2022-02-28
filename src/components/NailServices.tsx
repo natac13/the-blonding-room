@@ -14,12 +14,13 @@ import { useAllNailServices } from '../graphql/useAllNailServices'
 import { useParallax } from 'react-scroll-parallax'
 import { StaticImage } from 'gatsby-plugin-image'
 
-const NailSErvices: React.FC = () => {
+const NailServieces: React.FC = () => {
   const nailServices = useAllNailServices()?.allNailServicesYaml?.edges
 
   const parallax = useParallax<HTMLDivElement>({
     speed: 9,
     opacity: [0.1, 1],
+    scale: [0.6, 1],
     translateX: [-30, 10],
   })
 
@@ -27,9 +28,23 @@ const NailSErvices: React.FC = () => {
     <Box
       position={'relative'}
       as="section"
+      id="nail-services"
       minHeight={['auto', '80vh']}
       background="gray.200"
-      py={8}
+      pt="80px"
+      pb="2rem"
+      sx={{
+        '&::before': {
+          content: '""',
+          position: 'absolute',
+          top: '-2px',
+          right: 0,
+          left: 0,
+          backgroundColor: 'gray.800',
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 20%)',
+          height: '100px',
+        },
+      }}
     >
       <Box
         ref={parallax.ref}
@@ -84,4 +99,4 @@ const NailSErvices: React.FC = () => {
   )
 }
 
-export default NailSErvices
+export default NailServieces

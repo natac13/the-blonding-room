@@ -4,7 +4,7 @@ import { StaticImage } from 'gatsby-plugin-image'
 import { useParallax } from 'react-scroll-parallax'
 
 export const Hero: React.FC = () => {
-  const isMobile = useMediaQuery('(max-width: 30em)')
+  const [isMobile] = useMediaQuery('(max-width: 30em)')
   const parallax = useParallax<HTMLDivElement>({
     speed: isMobile ? 20 : 13,
     translateY: [300, 0],
@@ -12,12 +12,13 @@ export const Hero: React.FC = () => {
 
   const couchParallax = useParallax<HTMLDivElement>({
     speed: 6,
-    translateY: [0, 300],
+    translateY: [0, isMobile ? 50 : 300],
     opacity: [-0.2, 0.7],
+    // disabled: isMobile,
   })
   return (
     <Box
-      height="100vh"
+      height="106vh"
       width="100%"
       display="flex"
       justifyContent="center"
@@ -25,6 +26,18 @@ export const Hero: React.FC = () => {
       background="gray.100"
       position={'relative'}
       // overflowX="hidden"
+      sx={{
+        '&::after': {
+          content: '""',
+          position: 'absolute',
+          bottom: '-2px',
+          right: 0,
+          left: 0,
+          backgroundColor: 'gray.800',
+          clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 0 100%)',
+          height: '100px',
+        },
+      }}
     >
       <StaticImage
         src="../../images/texture-1.jpg"
@@ -39,7 +52,7 @@ export const Hero: React.FC = () => {
         }}
       />
       <Box
-        width={{ base: '220px', md: '400px', lg: '900px' }}
+        width={{ base: '300px', md: '425px', lg: '650px', xl: '800px' }}
         mt={{ base: '10rem', md: '5rem' }}
         boxShadow="dark-lg"
         height="max-content"
@@ -55,15 +68,22 @@ export const Hero: React.FC = () => {
         width="25%"
         ref={couchParallax.ref}
         position="absolute"
+        boxShadow="dark-lg"
         zIndex={2}
         right={0}
-        display={{ base: 'none', md: 'block' }}
+        bottom={'3rem'}
+        // display={{ base: 'none', md: 'block' }}
+        sx={{
+          '& img': {
+            filter: 'brightness(0.5)',
+          },
+        }}
       >
         <StaticImage
           src="../../images/half-couch.jpg"
           alt="Half couch picture with green plant"
           layout="constrained"
-          objectFit="contain"
+          objectFit="cover"
         />
       </Box>
     </Box>

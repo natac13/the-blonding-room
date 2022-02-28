@@ -17,7 +17,13 @@ const HairServices: React.FC = () => {
   const hairServices = useAllHairServices()?.allHairServicesYaml?.edges
 
   return (
-    <Box as="section" id="services" minHeight={['auto', '80vh']} pt={8}>
+    <Box
+      as="section"
+      id="services"
+      minHeight={['auto', '80vh']}
+      pt={8}
+      position="relative"
+    >
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
         <Heading
           as="h2"
@@ -44,13 +50,14 @@ const HairServices: React.FC = () => {
               base: 'column',
               md: idx % 2 === 0 ? 'row' : 'row-reverse',
             }}
-            mb={12}
+            mb={'6em'}
           >
             <Center width={{ base: '100%', md: '50%' }}>
               <Heading
                 fontWeight={200}
                 fontSize={{ base: '4xl', sm: '6xl' }}
                 mb={{ base: 6, md: 0 }}
+                color="gray.100"
               >
                 {edge?.node?.title}
               </Heading>
@@ -69,7 +76,7 @@ const HairServices: React.FC = () => {
                     <Text fontWeight={300} fontSize="xl">
                       {item?.title}
                     </Text>
-                    <Text color={'gray.500'} fontSize="large">
+                    <Text color={'gray.300'} fontSize="large">
                       {item.description}
                     </Text>
                   </VStack>
