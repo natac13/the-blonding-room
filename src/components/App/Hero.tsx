@@ -65,7 +65,7 @@ export const Hero: React.FC = () => {
         />
       </Box>
       <Box
-        width="25%"
+        width={{ base: '60%', sm: '35%', md: '25%' }}
         ref={couchParallax.ref}
         position="absolute"
         boxShadow="dark-lg"
