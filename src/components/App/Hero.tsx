@@ -62,6 +62,8 @@ export const Hero: React.FC = () => {
         <StaticImage
           src="../../images/sign-cropped.png"
           alt="The Blonding Room Sign"
+          loading="lazy"
+          placeholder="none"
         />
       </Box>
       <Box
