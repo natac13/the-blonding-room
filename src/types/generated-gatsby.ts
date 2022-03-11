@@ -714,6 +714,8 @@ export type File = Node & {
   childImageSharp?: Maybe<ImageSharp>;
   /** Returns the first child node of type NailServicesYaml or null if there are no children of given type on this node */
   childNailServicesYaml?: Maybe<NailServicesYaml>;
+  /** Returns the first child node of type StaffProfilesYaml or null if there are no children of given type on this node */
+  childStaffProfilesYaml?: Maybe<StaffProfilesYaml>;
   children: Array<Node>;
   /** Returns all children nodes filtered by type DataYaml */
   childrenDataYaml?: Maybe<Array<Maybe<DataYaml>>>;
@@ -723,6 +725,8 @@ export type File = Node & {
   childrenImageSharp?: Maybe<Array<Maybe<ImageSharp>>>;
   /** Returns all children nodes filtered by type NailServicesYaml */
   childrenNailServicesYaml?: Maybe<Array<Maybe<NailServicesYaml>>>;
+  /** Returns all children nodes filtered by type StaffProfilesYaml */
+  childrenStaffProfilesYaml?: Maybe<Array<Maybe<StaffProfilesYaml>>>;
   ctime: Scalars['Date'];
   ctimeMs: Scalars['Float'];
   dev: Scalars['Int'];
@@ -1076,6 +1080,50 @@ export enum FileFieldsEnum {
   ChildNailServicesYamlParentParentChildren = 'childNailServicesYaml___parent___parent___children',
   ChildNailServicesYamlParentParentId = 'childNailServicesYaml___parent___parent___id',
   ChildNailServicesYamlTitle = 'childNailServicesYaml___title',
+  ChildStaffProfilesYamlBusinessRole = 'childStaffProfilesYaml___businessRole',
+  ChildStaffProfilesYamlChildren = 'childStaffProfilesYaml___children',
+  ChildStaffProfilesYamlChildrenChildren = 'childStaffProfilesYaml___children___children',
+  ChildStaffProfilesYamlChildrenChildrenChildren = 'childStaffProfilesYaml___children___children___children',
+  ChildStaffProfilesYamlChildrenChildrenId = 'childStaffProfilesYaml___children___children___id',
+  ChildStaffProfilesYamlChildrenId = 'childStaffProfilesYaml___children___id',
+  ChildStaffProfilesYamlChildrenInternalContent = 'childStaffProfilesYaml___children___internal___content',
+  ChildStaffProfilesYamlChildrenInternalContentDigest = 'childStaffProfilesYaml___children___internal___contentDigest',
+  ChildStaffProfilesYamlChildrenInternalDescription = 'childStaffProfilesYaml___children___internal___description',
+  ChildStaffProfilesYamlChildrenInternalFieldOwners = 'childStaffProfilesYaml___children___internal___fieldOwners',
+  ChildStaffProfilesYamlChildrenInternalIgnoreType = 'childStaffProfilesYaml___children___internal___ignoreType',
+  ChildStaffProfilesYamlChildrenInternalMediaType = 'childStaffProfilesYaml___children___internal___mediaType',
+  ChildStaffProfilesYamlChildrenInternalOwner = 'childStaffProfilesYaml___children___internal___owner',
+  ChildStaffProfilesYamlChildrenInternalType = 'childStaffProfilesYaml___children___internal___type',
+  ChildStaffProfilesYamlChildrenParentChildren = 'childStaffProfilesYaml___children___parent___children',
+  ChildStaffProfilesYamlChildrenParentId = 'childStaffProfilesYaml___children___parent___id',
+  ChildStaffProfilesYamlDescription = 'childStaffProfilesYaml___description',
+  ChildStaffProfilesYamlId = 'childStaffProfilesYaml___id',
+  ChildStaffProfilesYamlInternalContent = 'childStaffProfilesYaml___internal___content',
+  ChildStaffProfilesYamlInternalContentDigest = 'childStaffProfilesYaml___internal___contentDigest',
+  ChildStaffProfilesYamlInternalDescription = 'childStaffProfilesYaml___internal___description',
+  ChildStaffProfilesYamlInternalFieldOwners = 'childStaffProfilesYaml___internal___fieldOwners',
+  ChildStaffProfilesYamlInternalIgnoreType = 'childStaffProfilesYaml___internal___ignoreType',
+  ChildStaffProfilesYamlInternalMediaType = 'childStaffProfilesYaml___internal___mediaType',
+  ChildStaffProfilesYamlInternalOwner = 'childStaffProfilesYaml___internal___owner',
+  ChildStaffProfilesYamlInternalType = 'childStaffProfilesYaml___internal___type',
+  ChildStaffProfilesYamlJobRole = 'childStaffProfilesYaml___jobRole',
+  ChildStaffProfilesYamlName = 'childStaffProfilesYaml___name',
+  ChildStaffProfilesYamlOrder = 'childStaffProfilesYaml___order',
+  ChildStaffProfilesYamlParentChildren = 'childStaffProfilesYaml___parent___children',
+  ChildStaffProfilesYamlParentChildrenChildren = 'childStaffProfilesYaml___parent___children___children',
+  ChildStaffProfilesYamlParentChildrenId = 'childStaffProfilesYaml___parent___children___id',
+  ChildStaffProfilesYamlParentId = 'childStaffProfilesYaml___parent___id',
+  ChildStaffProfilesYamlParentInternalContent = 'childStaffProfilesYaml___parent___internal___content',
+  ChildStaffProfilesYamlParentInternalContentDigest = 'childStaffProfilesYaml___parent___internal___contentDigest',
+  ChildStaffProfilesYamlParentInternalDescription = 'childStaffProfilesYaml___parent___internal___description',
+  ChildStaffProfilesYamlParentInternalFieldOwners = 'childStaffProfilesYaml___parent___internal___fieldOwners',
+  ChildStaffProfilesYamlParentInternalIgnoreType = 'childStaffProfilesYaml___parent___internal___ignoreType',
+  ChildStaffProfilesYamlParentInternalMediaType = 'childStaffProfilesYaml___parent___internal___mediaType',
+  ChildStaffProfilesYamlParentInternalOwner = 'childStaffProfilesYaml___parent___internal___owner',
+  ChildStaffProfilesYamlParentInternalType = 'childStaffProfilesYaml___parent___internal___type',
+  ChildStaffProfilesYamlParentParentChildren = 'childStaffProfilesYaml___parent___parent___children',
+  ChildStaffProfilesYamlParentParentId = 'childStaffProfilesYaml___parent___parent___id',
+  ChildStaffProfilesYamlSocialInstagram = 'childStaffProfilesYaml___social___instagram',
   Children = 'children',
   ChildrenDataYaml = 'childrenDataYaml',
   ChildrenDataYamlAboutDream = 'childrenDataYaml___about___dream',
@@ -1290,6 +1338,51 @@ export enum FileFieldsEnum {
   ChildrenNailServicesYamlParentParentChildren = 'childrenNailServicesYaml___parent___parent___children',
   ChildrenNailServicesYamlParentParentId = 'childrenNailServicesYaml___parent___parent___id',
   ChildrenNailServicesYamlTitle = 'childrenNailServicesYaml___title',
+  ChildrenStaffProfilesYaml = 'childrenStaffProfilesYaml',
+  ChildrenStaffProfilesYamlBusinessRole = 'childrenStaffProfilesYaml___businessRole',
+  ChildrenStaffProfilesYamlChildren = 'childrenStaffProfilesYaml___children',
+  ChildrenStaffProfilesYamlChildrenChildren = 'childrenStaffProfilesYaml___children___children',
+  ChildrenStaffProfilesYamlChildrenChildrenChildren = 'childrenStaffProfilesYaml___children___children___children',
+  ChildrenStaffProfilesYamlChildrenChildrenId = 'childrenStaffProfilesYaml___children___children___id',
+  ChildrenStaffProfilesYamlChildrenId = 'childrenStaffProfilesYaml___children___id',
+  ChildrenStaffProfilesYamlChildrenInternalContent = 'childrenStaffProfilesYaml___children___internal___content',
+  ChildrenStaffProfilesYamlChildrenInternalContentDigest = 'childrenStaffProfilesYaml___children___internal___contentDigest',
+  ChildrenStaffProfilesYamlChildrenInternalDescription = 'childrenStaffProfilesYaml___children___internal___description',
+  ChildrenStaffProfilesYamlChildrenInternalFieldOwners = 'childrenStaffProfilesYaml___children___internal___fieldOwners',
+  ChildrenStaffProfilesYamlChildrenInternalIgnoreType = 'childrenStaffProfilesYaml___children___internal___ignoreType',
+  ChildrenStaffProfilesYamlChildrenInternalMediaType = 'childrenStaffProfilesYaml___children___internal___mediaType',
+  ChildrenStaffProfilesYamlChildrenInternalOwner = 'childrenStaffProfilesYaml___children___internal___owner',
+  ChildrenStaffProfilesYamlChildrenInternalType = 'childrenStaffProfilesYaml___children___internal___type',
+  ChildrenStaffProfilesYamlChildrenParentChildren = 'childrenStaffProfilesYaml___children___parent___children',
+  ChildrenStaffProfilesYamlChildrenParentId = 'childrenStaffProfilesYaml___children___parent___id',
+  ChildrenStaffProfilesYamlDescription = 'childrenStaffProfilesYaml___description',
+  ChildrenStaffProfilesYamlId = 'childrenStaffProfilesYaml___id',
+  ChildrenStaffProfilesYamlInternalContent = 'childrenStaffProfilesYaml___internal___content',
+  ChildrenStaffProfilesYamlInternalContentDigest = 'childrenStaffProfilesYaml___internal___contentDigest',
+  ChildrenStaffProfilesYamlInternalDescription = 'childrenStaffProfilesYaml___internal___description',
+  ChildrenStaffProfilesYamlInternalFieldOwners = 'childrenStaffProfilesYaml___internal___fieldOwners',
+  ChildrenStaffProfilesYamlInternalIgnoreType = 'childrenStaffProfilesYaml___internal___ignoreType',
+  ChildrenStaffProfilesYamlInternalMediaType = 'childrenStaffProfilesYaml___internal___mediaType',
+  ChildrenStaffProfilesYamlInternalOwner = 'childrenStaffProfilesYaml___internal___owner',
+  ChildrenStaffProfilesYamlInternalType = 'childrenStaffProfilesYaml___internal___type',
+  ChildrenStaffProfilesYamlJobRole = 'childrenStaffProfilesYaml___jobRole',
+  ChildrenStaffProfilesYamlName = 'childrenStaffProfilesYaml___name',
+  ChildrenStaffProfilesYamlOrder = 'childrenStaffProfilesYaml___order',
+  ChildrenStaffProfilesYamlParentChildren = 'childrenStaffProfilesYaml___parent___children',
+  ChildrenStaffProfilesYamlParentChildrenChildren = 'childrenStaffProfilesYaml___parent___children___children',
+  ChildrenStaffProfilesYamlParentChildrenId = 'childrenStaffProfilesYaml___parent___children___id',
+  ChildrenStaffProfilesYamlParentId = 'childrenStaffProfilesYaml___parent___id',
+  ChildrenStaffProfilesYamlParentInternalContent = 'childrenStaffProfilesYaml___parent___internal___content',
+  ChildrenStaffProfilesYamlParentInternalContentDigest = 'childrenStaffProfilesYaml___parent___internal___contentDigest',
+  ChildrenStaffProfilesYamlParentInternalDescription = 'childrenStaffProfilesYaml___parent___internal___description',
+  ChildrenStaffProfilesYamlParentInternalFieldOwners = 'childrenStaffProfilesYaml___parent___internal___fieldOwners',
+  ChildrenStaffProfilesYamlParentInternalIgnoreType = 'childrenStaffProfilesYaml___parent___internal___ignoreType',
+  ChildrenStaffProfilesYamlParentInternalMediaType = 'childrenStaffProfilesYaml___parent___internal___mediaType',
+  ChildrenStaffProfilesYamlParentInternalOwner = 'childrenStaffProfilesYaml___parent___internal___owner',
+  ChildrenStaffProfilesYamlParentInternalType = 'childrenStaffProfilesYaml___parent___internal___type',
+  ChildrenStaffProfilesYamlParentParentChildren = 'childrenStaffProfilesYaml___parent___parent___children',
+  ChildrenStaffProfilesYamlParentParentId = 'childrenStaffProfilesYaml___parent___parent___id',
+  ChildrenStaffProfilesYamlSocialInstagram = 'childrenStaffProfilesYaml___social___instagram',
   ChildrenChildren = 'children___children',
   ChildrenChildrenChildren = 'children___children___children',
   ChildrenChildrenChildrenChildren = 'children___children___children___children',
@@ -1416,11 +1509,13 @@ export type FileFilterInput = {
   childHairServicesYaml?: InputMaybe<HairServicesYamlFilterInput>;
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
   childNailServicesYaml?: InputMaybe<NailServicesYamlFilterInput>;
+  childStaffProfilesYaml?: InputMaybe<StaffProfilesYamlFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   childrenDataYaml?: InputMaybe<DataYamlFilterListInput>;
   childrenHairServicesYaml?: InputMaybe<HairServicesYamlFilterListInput>;
   childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
   childrenNailServicesYaml?: InputMaybe<NailServicesYamlFilterListInput>;
+  childrenStaffProfilesYaml?: InputMaybe<StaffProfilesYamlFilterListInput>;
   ctime?: InputMaybe<DateQueryOperatorInput>;
   ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
   dev?: InputMaybe<IntQueryOperatorInput>;
@@ -2567,7 +2662,7 @@ export type Query = {
   allSiteFunction: SiteFunctionConnection;
   allSitePage: SitePageConnection;
   allSitePlugin: SitePluginConnection;
-  allStaticImage: StaticImageConnection;
+  allStaffProfilesYaml: StaffProfilesYamlConnection;
   dataYaml?: Maybe<DataYaml>;
   directory?: Maybe<Directory>;
   file?: Maybe<File>;
@@ -2579,7 +2674,7 @@ export type Query = {
   siteFunction?: Maybe<SiteFunction>;
   sitePage?: Maybe<SitePage>;
   sitePlugin?: Maybe<SitePlugin>;
-  staticImage?: Maybe<StaticImage>;
+  staffProfilesYaml?: Maybe<StaffProfilesYaml>;
 };
 
 
@@ -2671,11 +2766,11 @@ export type QueryAllSitePluginArgs = {
 };
 
 
-export type QueryAllStaticImageArgs = {
-  filter?: InputMaybe<StaticImageFilterInput>;
+export type QueryAllStaffProfilesYamlArgs = {
+  filter?: InputMaybe<StaffProfilesYamlFilterInput>;
   limit?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
-  sort?: InputMaybe<StaticImageSortInput>;
+  sort?: InputMaybe<StaffProfilesYamlSortInput>;
 };
 
 
@@ -2754,11 +2849,13 @@ export type QueryFileArgs = {
   childHairServicesYaml?: InputMaybe<HairServicesYamlFilterInput>;
   childImageSharp?: InputMaybe<ImageSharpFilterInput>;
   childNailServicesYaml?: InputMaybe<NailServicesYamlFilterInput>;
+  childStaffProfilesYaml?: InputMaybe<StaffProfilesYamlFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
   childrenDataYaml?: InputMaybe<DataYamlFilterListInput>;
   childrenHairServicesYaml?: InputMaybe<HairServicesYamlFilterListInput>;
   childrenImageSharp?: InputMaybe<ImageSharpFilterListInput>;
   childrenNailServicesYaml?: InputMaybe<NailServicesYamlFilterListInput>;
+  childrenStaffProfilesYaml?: InputMaybe<StaffProfilesYamlFilterListInput>;
   ctime?: InputMaybe<DateQueryOperatorInput>;
   ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
   dev?: InputMaybe<IntQueryOperatorInput>;
@@ -2892,43 +2989,17 @@ export type QuerySitePluginArgs = {
 };
 
 
-export type QueryStaticImageArgs = {
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
+export type QueryStaffProfilesYamlArgs = {
+  businessRole?: InputMaybe<StringQueryOperatorInput>;
   children?: InputMaybe<NodeFilterListInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
   internal?: InputMaybe<InternalFilterInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  jobRole?: InputMaybe<StringQueryOperatorInput>;
   name?: InputMaybe<StringQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
+  order?: InputMaybe<IntQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
+  social?: InputMaybe<StaffProfilesYamlSocialFilterInput>;
 };
 
 export type Site = Node & {
@@ -4099,169 +4170,69 @@ export enum SortOrderEnum {
   Desc = 'DESC'
 }
 
-export type StaticImage = Node & {
-  __typename?: 'StaticImage';
-  absolutePath?: Maybe<Scalars['String']>;
-  accessTime?: Maybe<Scalars['Date']>;
-  atime?: Maybe<Scalars['Date']>;
-  atimeMs?: Maybe<Scalars['Float']>;
-  base?: Maybe<Scalars['String']>;
-  birthTime?: Maybe<Scalars['Date']>;
-  birthtime?: Maybe<Scalars['Date']>;
-  birthtimeMs?: Maybe<Scalars['Float']>;
-  blksize?: Maybe<Scalars['Int']>;
-  blocks?: Maybe<Scalars['Int']>;
-  changeTime?: Maybe<Scalars['Date']>;
+export type StaffProfilesYaml = Node & {
+  __typename?: 'StaffProfilesYaml';
+  businessRole?: Maybe<Scalars['String']>;
   children: Array<Node>;
-  ctime?: Maybe<Scalars['Date']>;
-  ctimeMs?: Maybe<Scalars['Float']>;
-  dev?: Maybe<Scalars['Int']>;
-  dir?: Maybe<Scalars['String']>;
-  ext?: Maybe<Scalars['String']>;
-  extension?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
-  ino?: Maybe<Scalars['Int']>;
   internal: Internal;
-  mode?: Maybe<Scalars['Int']>;
-  modifiedTime?: Maybe<Scalars['Date']>;
-  mtime?: Maybe<Scalars['Date']>;
-  mtimeMs?: Maybe<Scalars['Float']>;
+  jobRole?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  nlink?: Maybe<Scalars['Int']>;
+  order?: Maybe<Scalars['Int']>;
   parent?: Maybe<Node>;
-  prettySize?: Maybe<Scalars['String']>;
-  rdev?: Maybe<Scalars['Int']>;
-  relativeDirectory?: Maybe<Scalars['String']>;
-  relativePath?: Maybe<Scalars['String']>;
-  root?: Maybe<Scalars['String']>;
-  size?: Maybe<Scalars['Int']>;
-  sourceInstanceName?: Maybe<Scalars['String']>;
-  uid?: Maybe<Scalars['Int']>;
+  social?: Maybe<StaffProfilesYamlSocial>;
 };
 
-
-export type StaticImageAccessTimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageAtimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageBirthTimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageBirthtimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageChangeTimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageCtimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageModifiedTimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-
-export type StaticImageMtimeArgs = {
-  difference?: InputMaybe<Scalars['String']>;
-  formatString?: InputMaybe<Scalars['String']>;
-  fromNow?: InputMaybe<Scalars['Boolean']>;
-  locale?: InputMaybe<Scalars['String']>;
-};
-
-export type StaticImageConnection = {
-  __typename?: 'StaticImageConnection';
+export type StaffProfilesYamlConnection = {
+  __typename?: 'StaffProfilesYamlConnection';
   distinct: Array<Scalars['String']>;
-  edges: Array<StaticImageEdge>;
-  group: Array<StaticImageGroupConnection>;
+  edges: Array<StaffProfilesYamlEdge>;
+  group: Array<StaffProfilesYamlGroupConnection>;
   max?: Maybe<Scalars['Float']>;
   min?: Maybe<Scalars['Float']>;
-  nodes: Array<StaticImage>;
+  nodes: Array<StaffProfilesYaml>;
   pageInfo: PageInfo;
   sum?: Maybe<Scalars['Float']>;
   totalCount: Scalars['Int'];
 };
 
 
-export type StaticImageConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlConnectionDistinctArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
 
-export type StaticImageConnectionGroupArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlConnectionGroupArgs = {
+  field: StaffProfilesYamlFieldsEnum;
   limit?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
 };
 
 
-export type StaticImageConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlConnectionMaxArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
 
-export type StaticImageConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlConnectionMinArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
 
-export type StaticImageConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlConnectionSumArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
-export type StaticImageEdge = {
-  __typename?: 'StaticImageEdge';
-  next?: Maybe<StaticImage>;
-  node: StaticImage;
-  previous?: Maybe<StaticImage>;
+export type StaffProfilesYamlEdge = {
+  __typename?: 'StaffProfilesYamlEdge';
+  next?: Maybe<StaffProfilesYaml>;
+  node: StaffProfilesYaml;
+  previous?: Maybe<StaffProfilesYaml>;
 };
 
-export enum StaticImageFieldsEnum {
-  AbsolutePath = 'absolutePath',
-  AccessTime = 'accessTime',
-  Atime = 'atime',
-  AtimeMs = 'atimeMs',
-  Base = 'base',
-  BirthTime = 'birthTime',
-  Birthtime = 'birthtime',
-  BirthtimeMs = 'birthtimeMs',
-  Blksize = 'blksize',
-  Blocks = 'blocks',
-  ChangeTime = 'changeTime',
+export enum StaffProfilesYamlFieldsEnum {
+  BusinessRole = 'businessRole',
   Children = 'children',
   ChildrenChildren = 'children___children',
   ChildrenChildrenChildren = 'children___children___children',
@@ -4301,14 +4272,8 @@ export enum StaticImageFieldsEnum {
   ChildrenParentInternalType = 'children___parent___internal___type',
   ChildrenParentParentChildren = 'children___parent___parent___children',
   ChildrenParentParentId = 'children___parent___parent___id',
-  Ctime = 'ctime',
-  CtimeMs = 'ctimeMs',
-  Dev = 'dev',
-  Dir = 'dir',
-  Ext = 'ext',
-  Extension = 'extension',
+  Description = 'description',
   Id = 'id',
-  Ino = 'ino',
   InternalContent = 'internal___content',
   InternalContentDigest = 'internal___contentDigest',
   InternalDescription = 'internal___description',
@@ -4317,12 +4282,9 @@ export enum StaticImageFieldsEnum {
   InternalMediaType = 'internal___mediaType',
   InternalOwner = 'internal___owner',
   InternalType = 'internal___type',
-  Mode = 'mode',
-  ModifiedTime = 'modifiedTime',
-  Mtime = 'mtime',
-  MtimeMs = 'mtimeMs',
+  JobRole = 'jobRole',
   Name = 'name',
-  Nlink = 'nlink',
+  Order = 'order',
   ParentChildren = 'parent___children',
   ParentChildrenChildren = 'parent___children___children',
   ParentChildrenChildrenChildren = 'parent___children___children___children',
@@ -4361,99 +4323,79 @@ export enum StaticImageFieldsEnum {
   ParentParentInternalType = 'parent___parent___internal___type',
   ParentParentParentChildren = 'parent___parent___parent___children',
   ParentParentParentId = 'parent___parent___parent___id',
-  PrettySize = 'prettySize',
-  Rdev = 'rdev',
-  RelativeDirectory = 'relativeDirectory',
-  RelativePath = 'relativePath',
-  Root = 'root',
-  Size = 'size',
-  SourceInstanceName = 'sourceInstanceName',
-  Uid = 'uid'
+  SocialInstagram = 'social___instagram'
 }
 
-export type StaticImageFilterInput = {
-  absolutePath?: InputMaybe<StringQueryOperatorInput>;
-  accessTime?: InputMaybe<DateQueryOperatorInput>;
-  atime?: InputMaybe<DateQueryOperatorInput>;
-  atimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  base?: InputMaybe<StringQueryOperatorInput>;
-  birthTime?: InputMaybe<DateQueryOperatorInput>;
-  birthtime?: InputMaybe<DateQueryOperatorInput>;
-  birthtimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  blksize?: InputMaybe<IntQueryOperatorInput>;
-  blocks?: InputMaybe<IntQueryOperatorInput>;
-  changeTime?: InputMaybe<DateQueryOperatorInput>;
+export type StaffProfilesYamlFilterInput = {
+  businessRole?: InputMaybe<StringQueryOperatorInput>;
   children?: InputMaybe<NodeFilterListInput>;
-  ctime?: InputMaybe<DateQueryOperatorInput>;
-  ctimeMs?: InputMaybe<FloatQueryOperatorInput>;
-  dev?: InputMaybe<IntQueryOperatorInput>;
-  dir?: InputMaybe<StringQueryOperatorInput>;
-  ext?: InputMaybe<StringQueryOperatorInput>;
-  extension?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
-  ino?: InputMaybe<IntQueryOperatorInput>;
   internal?: InputMaybe<InternalFilterInput>;
-  mode?: InputMaybe<IntQueryOperatorInput>;
-  modifiedTime?: InputMaybe<DateQueryOperatorInput>;
-  mtime?: InputMaybe<DateQueryOperatorInput>;
-  mtimeMs?: InputMaybe<FloatQueryOperatorInput>;
+  jobRole?: InputMaybe<StringQueryOperatorInput>;
   name?: InputMaybe<StringQueryOperatorInput>;
-  nlink?: InputMaybe<IntQueryOperatorInput>;
+  order?: InputMaybe<IntQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
-  prettySize?: InputMaybe<StringQueryOperatorInput>;
-  rdev?: InputMaybe<IntQueryOperatorInput>;
-  relativeDirectory?: InputMaybe<StringQueryOperatorInput>;
-  relativePath?: InputMaybe<StringQueryOperatorInput>;
-  root?: InputMaybe<StringQueryOperatorInput>;
-  size?: InputMaybe<IntQueryOperatorInput>;
-  sourceInstanceName?: InputMaybe<StringQueryOperatorInput>;
-  uid?: InputMaybe<IntQueryOperatorInput>;
+  social?: InputMaybe<StaffProfilesYamlSocialFilterInput>;
 };
 
-export type StaticImageGroupConnection = {
-  __typename?: 'StaticImageGroupConnection';
+export type StaffProfilesYamlFilterListInput = {
+  elemMatch?: InputMaybe<StaffProfilesYamlFilterInput>;
+};
+
+export type StaffProfilesYamlGroupConnection = {
+  __typename?: 'StaffProfilesYamlGroupConnection';
   distinct: Array<Scalars['String']>;
-  edges: Array<StaticImageEdge>;
+  edges: Array<StaffProfilesYamlEdge>;
   field: Scalars['String'];
   fieldValue?: Maybe<Scalars['String']>;
-  group: Array<StaticImageGroupConnection>;
+  group: Array<StaffProfilesYamlGroupConnection>;
   max?: Maybe<Scalars['Float']>;
   min?: Maybe<Scalars['Float']>;
-  nodes: Array<StaticImage>;
+  nodes: Array<StaffProfilesYaml>;
   pageInfo: PageInfo;
   sum?: Maybe<Scalars['Float']>;
   totalCount: Scalars['Int'];
 };
 
 
-export type StaticImageGroupConnectionDistinctArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlGroupConnectionDistinctArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
 
-export type StaticImageGroupConnectionGroupArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlGroupConnectionGroupArgs = {
+  field: StaffProfilesYamlFieldsEnum;
   limit?: InputMaybe<Scalars['Int']>;
   skip?: InputMaybe<Scalars['Int']>;
 };
 
 
-export type StaticImageGroupConnectionMaxArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlGroupConnectionMaxArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
 
-export type StaticImageGroupConnectionMinArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlGroupConnectionMinArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
 
-export type StaticImageGroupConnectionSumArgs = {
-  field: StaticImageFieldsEnum;
+export type StaffProfilesYamlGroupConnectionSumArgs = {
+  field: StaffProfilesYamlFieldsEnum;
 };
 
-export type StaticImageSortInput = {
-  fields?: InputMaybe<Array<InputMaybe<StaticImageFieldsEnum>>>;
+export type StaffProfilesYamlSocial = {
+  __typename?: 'StaffProfilesYamlSocial';
+  instagram?: Maybe<Scalars['String']>;
+};
+
+export type StaffProfilesYamlSocialFilterInput = {
+  instagram?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type StaffProfilesYamlSortInput = {
+  fields?: InputMaybe<Array<InputMaybe<StaffProfilesYamlFieldsEnum>>>;
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
@@ -4519,3 +4461,8 @@ export type AllNailServiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AllNailServiesQuery = { __typename?: 'Query', allNailServicesYaml: { __typename?: 'NailServicesYamlConnection', edges: Array<{ __typename?: 'NailServicesYamlEdge', node: { __typename?: 'NailServicesYaml', title?: string | null, items?: Array<{ __typename?: 'NailServicesYamlItems', item?: string | null, price?: string | null } | null> | null } }> } };
+
+export type AllStaffProfilesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllStaffProfilesQuery = { __typename?: 'Query', allStaffProfilesYaml: { __typename?: 'StaffProfilesYamlConnection', totalCount: number, group: Array<{ __typename?: 'StaffProfilesYamlGroupConnection', edges: Array<{ __typename?: 'StaffProfilesYamlEdge', node: { __typename?: 'StaffProfilesYaml', businessRole?: string | null, description?: string | null, id: string, name?: string | null, jobRole?: string | null, social?: { __typename?: 'StaffProfilesYamlSocial', instagram?: string | null } | null } }> }> } };

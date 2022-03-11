@@ -6,8 +6,8 @@ import { useParallax } from 'react-scroll-parallax'
 export const Hero: React.FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 30em)')
   const parallax = useParallax<HTMLDivElement>({
-    speed: isMobile ? 20 : 13,
-    translateY: [300, 0],
+    speed: isMobile ? 20 : 16,
+    translateY: ['0%', '150%'],
   })
 
   const couchParallax = useParallax<HTMLDivElement>({
@@ -35,7 +35,7 @@ export const Hero: React.FC = () => {
           left: 0,
           backgroundColor: 'gray.800',
           clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 0 100%)',
-          height: '100px',
+          height: '120px',
         },
       }}
     >
@@ -53,7 +53,7 @@ export const Hero: React.FC = () => {
       />
       <Box
         width={{ base: '300px', md: '425px', lg: '650px', xl: '800px' }}
-        mt={{ base: '10rem', md: '5rem' }}
+        // mt={{ base: '10rem', md: '5rem' }}
         boxShadow="dark-lg"
         height="max-content"
         zIndex={2}
