@@ -9,7 +9,10 @@ import {
   IconButton,
   Link,
   Container,
+  BoxProps,
 } from '@chakra-ui/react'
+// import texture from '../images/gold-texture.jpg'
+import texture from '../images/texture-1.jpg'
 import { StaticImage } from 'gatsby-plugin-image'
 import { filter } from 'lodash'
 import * as React from 'react'
@@ -22,24 +25,28 @@ import {
 } from 'react-icons/fa'
 import { animated, SpringValue, useSpring } from 'react-spring'
 import { useAllStaffProfiles } from '../graphql/useAllStaffProfiles'
+import { StaffProfilesYamlEdge } from '../types/generated-gatsby'
+import { isMobile } from 'react-device-detect'
+import isTouchDevice from 'is-touch-device'
 
 export interface StaffProfilesProps {}
 
 const Card = animated(Box)
-const iconSize = 35
 
-const cardWidth = 380
+const cardWidth = 400
 const cardHeight = 150
 
-const StyledCard: React.FC<{
-  style: any
-}> = ({ children, style, ...rest }) => (
+const StyledCard: React.FC<
+  {
+    style: any
+  } & Omit<BoxProps, 'style'>
+> = ({ children, style, ...rest }) => (
   <Card
     style={style}
     position="absolute"
     width={`${cardWidth}px`}
+    maxWidth="95vw"
     height={`${cardWidth + cardHeight}px`}
-    // background="secondary.900"
     background="gray.700"
     color="primary.500"
     display="flex"
@@ -53,7 +60,7 @@ const StyledCard: React.FC<{
   </Card>
 )
 
-const ProfileCard: React.FC = (props) => {
+const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
   const { edge } = props
   const [flipped, set] = React.useState(false)
   const { transform, opacity } = useSpring({
@@ -64,6 +71,7 @@ const ProfileCard: React.FC = (props) => {
   return (
     <Box
       width="min(85%, 20rem)"
+      height={`${cardWidth + cardHeight}px`}
       position="relative"
       display="flex"
       alignItems="center"
@@ -76,7 +84,6 @@ const ProfileCard: React.FC = (props) => {
           opacity,
           transform,
           rotateY: '-180deg',
-          backfaceVisibility: 'hidden',
         }}
         sx={{
           '&::-webkit-scrollbar': {
@@ -89,17 +96,18 @@ const ProfileCard: React.FC = (props) => {
             background: 'primary.300',
             borderRadius: '24px',
           },
+          backfaceVisibility: 'hidden' as const,
         }}
         overflowY="scroll"
       >
         <Box
-          px="1rem"
+          px="1.6rem"
           py="2rem"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Text fontSize="xl" lineHeight="1.5">
+          <Text fontSize="xl" lineHeight="1.7">
             {edge?.node?.description}
           </Text>
         </Box>
@@ -108,6 +116,8 @@ const ProfileCard: React.FC = (props) => {
         style={{
           opacity: opacity.to((o) => 1 - o),
           transform,
+        }}
+        sx={{
           backfaceVisibility: 'hidden',
         }}
         role="group"
@@ -116,7 +126,7 @@ const ProfileCard: React.FC = (props) => {
           flex="1 0"
           sx={{
             '& img.avatar': {
-              filter: 'brightness(0.8)',
+              filter: `brightness(${isTouchDevice ? 0.8 : 0.6}) blur(0.5px)`,
               transition:
                 'transform 420ms ease, filter 330ms ease, opacity 250ms linear',
               willChange: 'transform filter opacity',
@@ -137,6 +147,9 @@ const ProfileCard: React.FC = (props) => {
             alt="Placeholer"
             objectFit="cover"
             imgClassName="avatar"
+            imgStyle={{
+              maxWidth: '95vw',
+            }}
           />
         </Box>
         <Box
@@ -156,17 +169,6 @@ const ProfileCard: React.FC = (props) => {
             <Text as="h4" fontSize="4xl" fontWeight={200}>
               {edge?.node?.name}
             </Text>
-            {/* {edge?.node?.businessRole ? (
-              <Heading
-                as="h6"
-                fontSize="2xl"
-                lineHeight="3xl"
-                // fontStyle="italic"
-                // fontWeight={100}
-              >
-                {edge?.node?.businessRole}
-              </Heading>
-            ) : null} */}
           </Box>
           <Box px="1rem">
             <Divider
@@ -228,14 +230,66 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
 
   const owners = group1?.edges?.length === 3 ? group2 : group1
   const workers = group1?.edges?.length === 3 ? group1 : group2
-  console.log({ owners, workers })
 
   return (
-    <Box as="section" height={'min-content'} mb={'4rem'}>
-      <Container maxW="8xl">
+    <Box
+      as="section"
+      mb={'4rem'}
+      position="relative"
+      px={'1rem'}
+      pb={'4rem'}
+      maxWidth="100vw"
+      overflow={'hidden'}
+      _before={{
+        content: "''",
+        position: 'absolute',
+        display: { base: 'hidden', sm: 'initial' },
+        width: '100vw',
+        height: { md: '90%', lg: '80%' },
+        top: { md: '5%', lg: '15%' },
+        left: 0,
+        // background: 'gray.200',
+        backgroundImage: `url(${texture})`,
+        backgroundRepeat: 'repeat',
+        backgroundSize: 'cover',
+        filter: 'brightness(0.8)',
+        clipPath: {
+          base: '',
+          md: 'polygon(50% 6%, 100% 0, 100% 100%, 85% 95%, 15% 95%, 0 100%, 0 0)',
+          lg: 'polygon(50% 9%, 100% 0, 100% 100%, 85% 95%, 15% 95%, 0 100%, 0 0)',
+          xl: 'polygon(50% 13%, 100% 0, 100% 100%, 65% 85%, 35% 85%, 0 100%, 0 0)',
+        },
+      }}
+    >
+      {/* <Box
+        sx={{
+          position: 'absolute',
+          width: '105vw',
+          height: '80%',
+          top: '55%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          // background: 'gray.200',
+          // backgroundImage: `url(${texture})`,
+          // backgroundRepeat: 'repeat',
+          // backgroundSize: 'cover',
+          clipPath: [
+            '',
+            'polygon(50% 13%, 100% 0, 100% 100%, 65% 85%, 35% 85%, 0 100%, 0 0)',
+          ],
+        }}
+      >
+        <StaticImage
+          src="../images/texture-1.jpg"
+          alt="background texture white fabric"
+          imgStyle={{ filter: 'brightness(0.8)' }}
+        />
+      </Box> */}
+      <Container maxW="10xl" px={{ base: '1.5rem' }}>
         <Heading
           as="h4"
           ml={['2rem', '4rem']}
+          mb={'2rem'}
           color="gray.100"
           fontSize={{ base: '4xl', sm: '6xl' }}
         >
@@ -247,13 +301,7 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
           flexDirection="row"
           wrap="wrap"
           justifyContent="space-evenly"
-          mb="4rem"
-          position="relative"
-          height={{
-            sm: `${(cardWidth + cardHeight) * (owners?.edges?.length + 0.5)}px`,
-            md: `${(cardWidth + cardHeight) * (1 + 0.5)}px`,
-            xl: `${cardWidth + cardHeight}px`,
-          }}
+          mb="6rem"
         >
           {owners?.edges?.map((edge) => (
             <ProfileCard edge={edge} />
@@ -263,15 +311,7 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
           gap="10vh"
           flexDirection="row"
           wrap="wrap"
-          justifyContent="space-evenly"
-          position="relative"
-          height={{
-            sm: `${
-              (cardWidth + cardHeight) * (workers?.edges?.length + 0.4)
-            }px`,
-            md: `${(cardWidth + cardHeight) * 2}px`,
-            xl: `${cardWidth + cardHeight}px`,
-          }}
+          justifyContent="space-around"
         >
           {workers?.edges?.map((edge) => (
             <ProfileCard edge={edge} />
