@@ -7,6 +7,8 @@ import {
   Divider,
   Button,
   IconButton,
+  Link,
+  Container,
 } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import { filter } from 'lodash'
@@ -24,6 +26,10 @@ import { useAllStaffProfiles } from '../graphql/useAllStaffProfiles'
 export interface StaffProfilesProps {}
 
 const Card = animated(Box)
+const iconSize = 35
+
+const cardWidth = 380
+const cardHeight = 150
 
 const StyledCard: React.FC<{
   style: any
@@ -31,15 +37,16 @@ const StyledCard: React.FC<{
   <Card
     style={style}
     position="absolute"
-    height="500px"
-    width="350px"
-    maxW="500px"
-    maxH="500px"
-    background="gray.50"
+    width={`${cardWidth}px`}
+    height={`${cardWidth + cardHeight}px`}
+    // background="secondary.900"
+    background="gray.700"
+    color="primary.500"
     display="flex"
     flexDirection="column"
     justifyContent="space-between"
     alignItems="stretch"
+    boxShadow="dark-lg"
     {...rest}
   >
     {children}
@@ -61,6 +68,8 @@ const ProfileCard: React.FC = (props) => {
       display="flex"
       alignItems="center"
       justifyContent="center"
+      onClick={() => set((s) => !s)}
+      cursor="pointer"
     >
       <StyledCard
         style={{
@@ -69,17 +78,30 @@ const ProfileCard: React.FC = (props) => {
           rotateY: '-180deg',
           backfaceVisibility: 'hidden',
         }}
-        onClick={() => set((s) => !s)}
-        cursor="pointer"
+        sx={{
+          '&::-webkit-scrollbar': {
+            width: '2px',
+          },
+          '&::-webkit-scrollbar-track': {
+            width: '6px',
+          },
+          '&::-webkit-scrollbar-thumb': {
+            background: 'primary.300',
+            borderRadius: '24px',
+          },
+        }}
         overflowY="scroll"
       >
         <Box
-          p="2rem"
+          px="1rem"
+          py="2rem"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
-          <Text color="ButtonText">{edge?.node?.description}</Text>
+          <Text fontSize="xl" lineHeight="1.5">
+            {edge?.node?.description}
+          </Text>
         </Box>
       </StyledCard>
       <StyledCard
@@ -110,8 +132,8 @@ const ProfileCard: React.FC = (props) => {
           <StaticImage
             src="../images/jonathan-borba-XJt51hAa3z8-unsplash.jpg"
             layout="fixed"
-            width={350}
-            height={350}
+            width={cardWidth}
+            height={cardWidth}
             alt="Placeholer"
             objectFit="cover"
             imgClassName="avatar"
@@ -126,23 +148,25 @@ const ProfileCard: React.FC = (props) => {
         >
           <Box
             display="flex"
-            alignItems="center"
+            alignItems="flex-end"
             pt="1rem"
             px="1rem"
-            justifyContent="space-between"
+            justifyContent={'center'}
           >
-            <Text as="h4" color="ButtonText" fontSize="2xl" fontWeight={500}>
+            <Text as="h4" fontSize="4xl" fontWeight={200}>
               {edge?.node?.name}
             </Text>
-            <Heading
-              as="h6"
-              fontSize="2xl"
-              // fontStyle="italic"
-              color="ButtonText"
-              // fontWeight={100}
-            >
-              {edge?.node?.jobRole}
-            </Heading>
+            {/* {edge?.node?.businessRole ? (
+              <Heading
+                as="h6"
+                fontSize="2xl"
+                lineHeight="3xl"
+                // fontStyle="italic"
+                // fontWeight={100}
+              >
+                {edge?.node?.businessRole}
+              </Heading>
+            ) : null} */}
           </Box>
           <Box px="1rem">
             <Divider
@@ -159,59 +183,36 @@ const ProfileCard: React.FC = (props) => {
             py="1rem"
             gap="1rem"
           >
-            {edge?.node?.businessRole ? (
+            {edge?.node?.jobRole ? (
               <Heading
                 justifySelf="flex-start"
                 alignItems="center"
-                color="ButtonText"
                 textAlign="left"
-                fontSize="lg"
+                fontSize="3xl"
               >
-                {edge?.node?.businessRole}
+                {edge?.node?.jobRole}
               </Heading>
             ) : (
               <div />
             )}
 
-            <Box display="flex" alignItems="center" gap="1rem">
+            <Box display="flex" alignItems="center">
               <IconButton
                 aria-label="instagram"
-                onClick={() => {}}
-                background="whiteAlpha.900"
-                borderColor="InactiveCaptionText"
-                borderRadius={0}
-                borderStyle="solid"
-                transition={'background 0.3s ease'}
+                as={Link}
+                size={'lg'}
+                onClick={(e) => {
+                  e.stopPropagation()
+                }}
+                href={edge?.node?.social?.instagram}
+                variant="ghost"
+                fontSize="3xl"
+                color="primary.500"
                 _hover={{
-                  bg: 'blackAlpha.200',
-                  '& > svg': {
-                    transition: 'transform 0.5s ease',
-                    transform: 'translateY(-3px)',
-                  },
+                  bg: 'blackAlpha.300',
                 }}
-              >
-                <BsInstagram size={25} />
-              </IconButton>
-              <IconButton
-                aria-label="description"
-                onClick={() => {
-                  set((state) => !state)
-                }}
-                background="whiteAlpha.900"
-                borderColor="InactiveCaptionText"
-                borderRadius={0}
-                borderStyle="solid"
-                transition={'background 0.3s ease'}
-                _hover={{
-                  bg: 'blackAlpha.200',
-                  '& > svg': {
-                    transition: 'transform 0.5s ease',
-                    transform: 'translateY(-3px)',
-                  },
-                }}
-              >
-                <BsChevronRight size={25} />
-              </IconButton>
+                icon={<BsInstagram />}
+              />
             </Box>
           </Box>
         </Box>
@@ -230,41 +231,53 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
   console.log({ owners, workers })
 
   return (
-    <Box as="section" height="calc(1000px + 12rem)">
-      <Heading
-        as="h4"
-        ml={['2rem', '4rem']}
-        color="gray.100"
-        fontSize={{ base: '4xl', sm: '6xl' }}
-      >
-        Say Hello!
-      </Heading>
+    <Box as="section" height={'min-content'} mb={'4rem'}>
+      <Container maxW="8xl">
+        <Heading
+          as="h4"
+          ml={['2rem', '4rem']}
+          color="gray.100"
+          fontSize={{ base: '4xl', sm: '6xl' }}
+        >
+          Say Hello!
+        </Heading>
 
-      <Flex
-        gap="10vh"
-        flexDirection="row"
-        wrap="nowrap"
-        justifyContent="center"
-        mb="4rem"
-        position="relative"
-        height="500px"
-      >
-        {owners?.edges?.map((edge) => (
-          <ProfileCard edge={edge} />
-        ))}
-      </Flex>
-      <Flex
-        gap="10vh"
-        flexDirection="row"
-        wrap="nowrap"
-        justifyContent="center"
-        position="relative"
-        height="500px"
-      >
-        {workers?.edges?.map((edge) => (
-          <ProfileCard edge={edge} />
-        ))}
-      </Flex>
+        <Flex
+          gap="10vh"
+          flexDirection="row"
+          wrap="wrap"
+          justifyContent="space-evenly"
+          mb="4rem"
+          position="relative"
+          height={{
+            sm: `${(cardWidth + cardHeight) * (owners?.edges?.length + 0.5)}px`,
+            md: `${(cardWidth + cardHeight) * (1 + 0.5)}px`,
+            xl: `${cardWidth + cardHeight}px`,
+          }}
+        >
+          {owners?.edges?.map((edge) => (
+            <ProfileCard edge={edge} />
+          ))}
+        </Flex>
+        <Flex
+          gap="10vh"
+          flexDirection="row"
+          wrap="wrap"
+          justifyContent="space-evenly"
+          position="relative"
+          height={{
+            sm: `${
+              (cardWidth + cardHeight) * (workers?.edges?.length + 0.4)
+            }px`,
+            md: `${(cardWidth + cardHeight) * 2}px`,
+            xl: `${cardWidth + cardHeight}px`,
+          }}
+        >
+          {workers?.edges?.map((edge) => (
+            <ProfileCard edge={edge} />
+          ))}
+        </Flex>
+      </Container>
     </Box>
   )
 }
