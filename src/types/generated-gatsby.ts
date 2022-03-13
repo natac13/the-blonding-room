@@ -4466,3 +4466,8 @@ export type AllStaffProfilesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AllStaffProfilesQuery = { __typename?: 'Query', allStaffProfilesYaml: { __typename?: 'StaffProfilesYamlConnection', totalCount: number, group: Array<{ __typename?: 'StaffProfilesYamlGroupConnection', edges: Array<{ __typename?: 'StaffProfilesYamlEdge', node: { __typename?: 'StaffProfilesYaml', businessRole?: string | null, description?: string | null, id: string, name?: string | null, jobRole?: string | null, social?: { __typename?: 'StaffProfilesYamlSocial', instagram?: string | null } | null } }> }> } };
+
+export type ClientProfileQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type ClientProfileQuery = { __typename?: 'Query', clientProfile?: { __typename?: 'DataYaml', description?: string | null, name?: string | null, phoneNumber?: string | null, siteUrl?: string | null, emailAddress?: string | null, contactName?: string | null, address?: string | null, id: string } | null, image?: { __typename?: 'File', base: string, publicURL?: string | null } | null };

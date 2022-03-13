@@ -4,6 +4,7 @@ import { Box, Container } from '@chakra-ui/react'
 import * as React from 'react'
 import { Footer } from './Footer'
 import { Navbar } from './Navbar'
+import { SEO } from './SEO'
 
 export interface LayoutProps {}
 
@@ -12,6 +13,7 @@ export const Layout: React.FC<LayoutProps> = (props) => {
 
   return (
     <Box as="section">
+      <SEO />
       <Navbar />
       {children}
       <Footer />
