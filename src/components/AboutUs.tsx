@@ -15,7 +15,7 @@ const AboutUs: React.FC = () => {
       >
         <Heading
           as="h2"
-          fontSize={{ base: '6xl', sm: '8xl' }}
+          fontSize={{ base: '6xl', sm: '9xl' }}
           fontWeight={200}
           textAlign="center"
         >
