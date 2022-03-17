@@ -5,7 +5,25 @@ import StaffProfiles from './StaffProfiles'
 const AboutUs: React.FC = () => {
   const data = useAboutData()?.aboutData?.about
   return (
-    <Box as="section" id="about" minHeight={['auto', '80vh']} pt={8}>
+    <Box
+      as="section"
+      id="about"
+      minHeight={['auto', '80vh']}
+      pt={3}
+      mt={'1rem'}
+      bg="gray.900"
+      position="relative"
+      _before={{
+        content: '""',
+        position: 'absolute',
+        top: '-80px',
+        right: 0,
+        left: 0,
+        backgroundColor: 'gray.900',
+        clipPath: 'polygon(50% 10%, 100% 80%, 100% 100%, 0 100%, 0 80%)',
+        height: '80px',
+      }}
+    >
       <Stack
         spacing={4}
         mb={'4rem'}

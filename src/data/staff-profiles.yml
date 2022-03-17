@@ -1,6 +1,6 @@
-- name: Taylor
+- name: Tayler
   social:
-    instagram: '@enveousblonde'
+    instagram: 'enveousblonde'
   businessRole: Part Owner
   jobRole: Stylist
   order: 1
@@ -26,7 +26,7 @@
     excited to have you in her chair next!
 - name: Jing-Jing
   social:
-    instagram: '@blondetones'
+    instagram: 'blondetones'
   businessRole: ''
   jobRole: Stylist
   order: 3
@@ -42,7 +42,7 @@
     to meet!
 - name: Juana
   social:
-    instagram: '@nailsbyjuana'
+    instagram: 'nailsbyjuana_'
   businessRole: ''
   jobRole: Nail Technician
   order: 4
@@ -60,7 +60,7 @@
     my life.
 - name: Sim
   social:
-    instagram: '@nailsbysim'
+    instagram: 'nailsbysim'
   businessRole: ''
   jobRole: Nail Technician
   order: 5

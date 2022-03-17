@@ -7,15 +7,22 @@ export const Hero: React.FC = () => {
   const [isMobile] = useMediaQuery('(max-width: 30em)')
   const parallax = useParallax<HTMLDivElement>({
     speed: isMobile ? 20 : 16,
-    translateY: ['0%', '150%'],
+    opacity: [2, 0],
+    translateY: ['-160%', '190%'],
   })
 
+  // const opacity = useParallax<HTMLDivElement>({
+  //   // opacity: [-1, 0.88],
+  // })
+
   const couchParallax = useParallax<HTMLDivElement>({
-    speed: 6,
-    translateY: [0, isMobile ? 50 : 300],
+    speed: 1,
+    translateY: [50, 400],
     opacity: [-0.2, 0.7],
+    scale: [0.5, 1],
     // disabled: isMobile,
   })
+
   return (
     <Box
       height="106vh"
@@ -33,7 +40,7 @@ export const Hero: React.FC = () => {
           bottom: '-2px',
           right: 0,
           left: 0,
-          backgroundColor: 'gray.800',
+          backgroundColor: 'gray.900',
           clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 0 100%)',
           height: '120px',
         },
@@ -52,15 +59,34 @@ export const Hero: React.FC = () => {
         }}
       />
       <Box
-        width={{ base: '300px', md: '425px', lg: '650px', xl: '800px' }}
+        width={{
+          base: '90vw',
+          sm: '600px',
+          md: '800px',
+          lg: '950px',
+          xl: '1200px',
+        }}
         // mt={{ base: '10rem', md: '5rem' }}
-        boxShadow="dark-lg"
+        bg="white"
+        boxShadow={'lg'}
         height="max-content"
         zIndex={2}
         ref={parallax.ref}
       >
+        {/* <Box
+          ref={opacity.ref}
+          sx={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            top: '0',
+            bg: 'white',
+            zIndex: -1,
+          }}
+        /> */}
         <StaticImage
-          src="../../images/sign-cropped.png"
+          src="../../images/theblondingroom-transparent.png"
+          layout="fullWidth"
           alt="The Blonding Room Sign"
           loading="lazy"
           placeholder="none"
