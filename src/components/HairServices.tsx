@@ -13,9 +13,18 @@ import {
 import * as React from 'react'
 import { CheckIcon } from '@chakra-ui/icons'
 import { useAllHairServices } from '../graphql/useAllHairServices'
+import { useParallax } from 'react-scroll-parallax'
+import { StaticImage } from 'gatsby-plugin-image'
 
 const HairServices: React.FC = () => {
   const hairServices = useAllHairServices()?.allHairServicesYaml?.edges
+  const couchParallax = useParallax<HTMLDivElement>({
+    speed: 1,
+    translateY: [0, 10],
+    opacity: [-0.2, 0.7],
+    scale: [0.5, 1],
+    // disabled: isMobile,
+  })
 
   return (
     <Box
@@ -26,6 +35,28 @@ const HairServices: React.FC = () => {
       position="relative"
       bg="gray.900"
     >
+      <Box
+        width={{ base: '60%', sm: '35%', md: '25%' }}
+        ref={couchParallax.ref}
+        position="absolute"
+        boxShadow="dark-lg"
+        zIndex={2}
+        right={0}
+        bottom={'3rem'}
+        // display={{ base: 'none', md: 'block' }}
+        sx={{
+          '& img': {
+            filter: 'brightness(0.5)',
+          },
+        }}
+      >
+        <StaticImage
+          src="../../images/half-couch.jpg"
+          alt="Half couch picture with green plant"
+          layout="constrained"
+          objectFit="cover"
+        />
+      </Box>
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
         <Heading
           as="h2"

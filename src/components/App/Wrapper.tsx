@@ -6,7 +6,8 @@ export interface WrapperProps {}
 const Wrapper: React.FC<WrapperProps> = (props) => {
   const { children } = props
 
-  return <ParallaxProvider>{children}</ParallaxProvider>
+  // return <ParallaxProvider>{children}</ParallaxProvider>
+  return <div>{children}</div>
 }
 
 export default Wrapper

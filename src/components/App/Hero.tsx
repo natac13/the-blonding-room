@@ -15,14 +15,6 @@ export const Hero: React.FC = () => {
   //   // opacity: [-1, 0.88],
   // })
 
-  const couchParallax = useParallax<HTMLDivElement>({
-    speed: 1,
-    translateY: [50, 400],
-    opacity: [-0.2, 0.7],
-    scale: [0.5, 1],
-    // disabled: isMobile,
-  })
-
   return (
     <Box
       height="106vh"
@@ -47,7 +39,7 @@ export const Hero: React.FC = () => {
       }}
     >
       <StaticImage
-        src="../../images/texture-1.jpg"
+        src="../../images/hero.jpg"
         alt="texture"
         placeholder="dominantColor"
         objectFit="cover"
@@ -66,52 +58,18 @@ export const Hero: React.FC = () => {
           lg: '950px',
           xl: '1200px',
         }}
-        // mt={{ base: '10rem', md: '5rem' }}
         bg="white"
         boxShadow={'lg'}
         height="max-content"
         zIndex={2}
         ref={parallax.ref}
       >
-        {/* <Box
-          ref={opacity.ref}
-          sx={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            top: '0',
-            bg: 'white',
-            zIndex: -1,
-          }}
-        /> */}
         <StaticImage
           src="../../images/theblondingroom-transparent.png"
           layout="fullWidth"
           alt="The Blonding Room Sign"
           loading="lazy"
           placeholder="none"
-        />
-      </Box>
-      <Box
-        width={{ base: '60%', sm: '35%', md: '25%' }}
-        ref={couchParallax.ref}
-        position="absolute"
-        boxShadow="dark-lg"
-        zIndex={2}
-        right={0}
-        bottom={'3rem'}
-        // display={{ base: 'none', md: 'block' }}
-        sx={{
-          '& img': {
-            filter: 'brightness(0.5)',
-          },
-        }}
-      >
-        <StaticImage
-          src="../../images/half-couch.jpg"
-          alt="Half couch picture with green plant"
-          layout="constrained"
-          objectFit="cover"
         />
       </Box>
     </Box>
