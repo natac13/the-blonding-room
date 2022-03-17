@@ -23,6 +23,7 @@ const Contact: React.FC<ContactProps> = (props) => {
       id="contact-us"
       height="auto"
       pb="4rem"
+      bg="gray.900"
       px={{ base: '1rem', sm: 0 }}
     >
       <Heading
@@ -37,7 +38,11 @@ const Contact: React.FC<ContactProps> = (props) => {
 
       <Center flexDirection="column" mb="4rem">
         <Text as="h5" fontSize="large" align="center" fontWeight="thin" pb={4}>
-          We are open 5 days a week as follows
+          We are available for bookings Monday to Saturday
+        </Text>
+        <Text as="h5" fontSize="large" align="center" fontWeight="thin" pb={4}>
+          We strive for a work life balance and therefore if we have no bookings
+          we are not at the salon but enjoying the beautiful day!
         </Text>
         <Stack
           direction={['column', 'row']}
@@ -47,10 +52,13 @@ const Contact: React.FC<ContactProps> = (props) => {
           spacing="1rem"
         >
           <Text align="center">
+            Please contact us to make your next appointment!
+          </Text>
+          {/* <Text align="center">
             Tuesday – Thursday from 9:00 AM to 8:00 PM{' '}
           </Text>
           <Text align="center">Friday from 9:00 AM to 6:00PM and</Text>
-          <Text align="center">Saturday from 9:00 AM to 3:00 PM</Text>
+          <Text align="center">Saturday from 9:00 AM to 3:00 PM</Text> */}
         </Stack>
       </Center>
 

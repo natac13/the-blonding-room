@@ -48,7 +48,7 @@ const SocialButton = ({
 export const Footer: React.FC = () => {
   return (
     <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
+      bg={useColorModeValue('gray.50', 'black')}
       color={useColorModeValue('gray.700', 'gray.200')}
       width="100%"
     >

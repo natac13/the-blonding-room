@@ -30,9 +30,9 @@ const NailServieces: React.FC = () => {
       as="section"
       id="nail-services"
       minHeight={['auto', '80vh']}
-      background="gray.200"
+      background="white"
       pt="80px"
-      pb="2rem"
+      pb="4rem"
       sx={{
         '&::before': {
           content: '""',
@@ -40,9 +40,9 @@ const NailServieces: React.FC = () => {
           top: '-2px',
           right: 0,
           left: 0,
-          backgroundColor: 'gray.800',
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 20%)',
-          height: '100px',
+          backgroundColor: 'gray.900',
+          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 0%)',
+          height: '105px',
         },
       }}
     >
@@ -58,7 +58,7 @@ const NailServieces: React.FC = () => {
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
         <Heading
           as="h2"
-          color="blackAlpha.700"
+          color="blackAlpha.800"
           fontSize={{ base: '6xl', sm: '9xl' }}
         >
           Nail Services
@@ -81,7 +81,7 @@ const NailServieces: React.FC = () => {
                 fontWeight={200}
                 textTransform="uppercase"
                 fontSize={{ base: '3xl', sm: '4xl' }}
-                color="primary.900"
+                color="blackAlpha.900"
               >
                 {edge?.node?.title}
               </Text>

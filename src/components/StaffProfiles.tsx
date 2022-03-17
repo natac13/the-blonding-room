@@ -1,33 +1,24 @@
-import { ChevronRightIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Flex,
-  Text,
-  Heading,
-  Divider,
+  BoxProps,
   Button,
+  Container,
+  Divider,
+  Flex,
+  Heading,
   IconButton,
   Link,
-  Container,
-  BoxProps,
+  Text,
 } from '@chakra-ui/react'
+import { StaticImage } from 'gatsby-plugin-image'
+import isTouchDevice from 'is-touch-device'
+import * as React from 'react'
+import { BsInfoCircle, BsInstagram } from 'react-icons/bs'
+import { animated, useSpring } from 'react-spring'
+import { useAllStaffProfiles } from '../graphql/useAllStaffProfiles'
 // import texture from '../images/gold-texture.jpg'
 import texture from '../images/texture-1.jpg'
-import { StaticImage } from 'gatsby-plugin-image'
-import { filter } from 'lodash'
-import * as React from 'react'
-import { BsChevronBarRight, BsChevronRight, BsInstagram } from 'react-icons/bs'
-import {
-  FaAngleRight,
-  FaChevronCircleRight,
-  FaInstagram,
-  FaInstagramSquare,
-} from 'react-icons/fa'
-import { animated, SpringValue, useSpring } from 'react-spring'
-import { useAllStaffProfiles } from '../graphql/useAllStaffProfiles'
 import { StaffProfilesYamlEdge } from '../types/generated-gatsby'
-import { isMobile } from 'react-device-detect'
-import isTouchDevice from 'is-touch-device'
 
 export interface StaffProfilesProps {}
 
@@ -47,7 +38,7 @@ const StyledCard: React.FC<
     width={`${cardWidth}px`}
     maxWidth="95vw"
     height={`${cardWidth + cardHeight}px`}
-    background="gray.700"
+    background="gray.800"
     color="primary.500"
     display="flex"
     flexDirection="column"
@@ -63,31 +54,39 @@ const StyledCard: React.FC<
 const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
   const { edge } = props
   const [flipped, set] = React.useState(false)
-  const { transform, opacity } = useSpring({
+  const { transform, opacity, width } = useSpring({
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateY(${flipped ? -180 : 0}deg)`,
+    width: `min(85%, ${flipped ? '36rem' : '20rem'})`,
     config: { mass: 5, tension: 500, friction: 80 },
   })
   return (
-    <Box
-      width="min(85%, 20rem)"
+    <Card
+      style={{
+        width,
+      }}
       height={`${cardWidth + cardHeight}px`}
       position="relative"
       display="flex"
       alignItems="center"
       justifyContent="center"
-      onClick={() => set((s) => !s)}
       cursor="pointer"
+      onClick={(e) => {
+        e.stopPropagation()
+        set((s) => !s)
+      }}
     >
       <StyledCard
         style={{
           opacity,
           transform,
           rotateY: '-180deg',
+          // width: { base: '95vw', sm: '23rem', md: '33rem' },
         }}
+        width="100%"
         sx={{
           '&::-webkit-scrollbar': {
-            width: '2px',
+            width: ['3px', '6px'],
           },
           '&::-webkit-scrollbar-track': {
             width: '6px',
@@ -102,15 +101,49 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
       >
         <Box
           px="1.6rem"
-          py="2rem"
+          py="3rem"
           display="flex"
           alignItems="center"
           justifyContent="center"
+          // bg="blackAlpha.700"
         >
-          <Text fontSize="xl" lineHeight="1.7">
+          <Text
+            fontSize="xl"
+            lineHeight="1.7"
+            color="whiteAlpha.900"
+            letterSpacing={'.4px'}
+          >
             {edge?.node?.description}
           </Text>
         </Box>
+        {edge?.node?.social?.instagram && (
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            mb="3rem"
+          >
+            <Button
+              as={Link}
+              size={'lg'}
+              onClick={(e) => e.stopPropagation()}
+              variant="outline"
+              target="_blank"
+              href={`https://instagram.com/${edge?.node?.social?.instagram}`}
+              // fontSize="3xl"
+              color="primary.500"
+              bg="blackAlpha.200"
+              _hover={{
+                color: 'primary.400',
+                bg: 'blackAlpha.400',
+                textDecoration: 'none',
+              }}
+              leftIcon={<BsInstagram />}
+            >
+              {edge?.node?.social?.instagram}
+            </Button>
+          </Box>
+        )}
       </StyledCard>
       <StyledCard
         style={{
@@ -126,7 +159,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
           flex="1 0"
           sx={{
             '& img.avatar': {
-              filter: `brightness(${isTouchDevice ? 0.8 : 0.6}) blur(0.5px)`,
+              filter: `brightness(${isTouchDevice ? 0.9 : 0.7}) blur(0.5px)`,
               transition:
                 'transform 420ms ease, filter 330ms ease, opacity 250ms linear',
               willChange: 'transform filter opacity',
@@ -135,7 +168,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
           _groupHover={{
             '& img.avatar': {
               filter: 'brightness(1)',
-              transform: 'scale(1.025)',
+              transform: 'scale(1.04)',
             },
           }}
         >
@@ -200,26 +233,25 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
 
             <Box display="flex" alignItems="center">
               <IconButton
-                aria-label="instagram"
-                as={Link}
+                aria-label="description"
                 size={'lg'}
                 onClick={(e) => {
                   e.stopPropagation()
+                  set((s) => !s)
                 }}
-                href={edge?.node?.social?.instagram}
                 variant="ghost"
                 fontSize="3xl"
                 color="primary.500"
                 _hover={{
                   bg: 'blackAlpha.300',
                 }}
-                icon={<BsInstagram />}
+                icon={<BsInfoCircle />}
               />
             </Box>
           </Box>
         </Box>
       </StyledCard>
-    </Box>
+    </Card>
   )
 }
 
@@ -234,10 +266,9 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
   return (
     <Box
       as="section"
-      mb={'4rem'}
       position="relative"
       px={'1rem'}
-      pb={'4rem'}
+      pb={'8rem'}
       maxWidth="100vw"
       overflow={'hidden'}
       _before={{
@@ -252,7 +283,7 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
         backgroundImage: `url(${texture})`,
         backgroundRepeat: 'repeat',
         backgroundSize: 'cover',
-        filter: 'brightness(0.8)',
+        filter: 'brightness(1.1)',
         clipPath: {
           base: '',
           md: 'polygon(50% 6%, 100% 0, 100% 100%, 85% 95%, 15% 95%, 0 100%, 0 0)',
@@ -309,6 +340,7 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
         </Flex>
         <Flex
           gap="10vh"
+          flexDirection="row"
           flexDirection="row"
           wrap="wrap"
           justifyContent="space-around"

@@ -24,6 +24,7 @@ const HairServices: React.FC = () => {
       minHeight={['auto', '80vh']}
       pt={8}
       position="relative"
+      bg="gray.900"
     >
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
         <Heading
