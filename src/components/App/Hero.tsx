@@ -44,6 +44,9 @@ export const Hero: React.FC = () => {
         placeholder="dominantColor"
         objectFit="cover"
         loading="eager"
+        imgStyle={{
+          filter: 'brightness(0.9)',
+        }}
         style={{
           position: 'absolute',
           width: '100%',
