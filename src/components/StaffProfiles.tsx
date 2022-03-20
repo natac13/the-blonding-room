@@ -44,7 +44,6 @@ const StyledCard: React.FC<
     flexDirection="column"
     justifyContent="space-between"
     alignItems="stretch"
-    boxShadow="dark-lg"
     {...rest}
   >
     {children}
@@ -57,7 +56,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
   const { transform, opacity, width } = useSpring({
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateY(${flipped ? -180 : 0}deg)`,
-    width: `min(85%, ${flipped ? '36rem' : '20rem'})`,
+    width: `${flipped ? '36rem' : '20rem'}`,
     config: { mass: 5, tension: 500, friction: 80 },
   })
   return (
@@ -81,18 +80,22 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
           opacity,
           transform,
           rotateY: '-180deg',
-          // width: { base: '95vw', sm: '23rem', md: '33rem' },
         }}
-        width="100%"
+        width={{ base: '95vw', sm: '100%' }}
+        mr={{ base: '10px', sm: '0' }}
         sx={{
+          // width: { base: '95vw', sm: '23rem', md: '33rem' },
+          boxShadow: 'rgba(245, 245, 245, 0.35) 0px 5px 15px',
+          backgroundColor: 'whiteAlpha.900',
+          color: 'blackAlpha.900',
           '&::-webkit-scrollbar': {
-            width: ['3px', '6px'],
+            width: ['5px', '7px'],
           },
           '&::-webkit-scrollbar-track': {
             width: '6px',
           },
           '&::-webkit-scrollbar-thumb': {
-            background: 'primary.300',
+            background: 'primary.600',
             borderRadius: '24px',
           },
           backfaceVisibility: 'hidden' as const,
@@ -100,19 +103,14 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
         overflowY="scroll"
       >
         <Box
-          px="1.6rem"
+          pl={{ base: '1.35rem', sm: '1.6rem' }}
+          pr={{ base: '0.35rem', sm: '1.6rem' }}
           py="3rem"
           display="flex"
           alignItems="center"
           justifyContent="center"
-          // bg="blackAlpha.700"
         >
-          <Text
-            fontSize="xl"
-            lineHeight="1.7"
-            color="whiteAlpha.900"
-            letterSpacing={'.4px'}
-          >
+          <Text fontSize="xl" lineHeight="1.7" letterSpacing={'.4px'}>
             {edge?.node?.description}
           </Text>
         </Box>
@@ -131,11 +129,11 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
               target="_blank"
               href={`https://instagram.com/${edge?.node?.social?.instagram}`}
               // fontSize="3xl"
-              color="primary.500"
-              bg="blackAlpha.200"
+              color="primary.700"
+              bg="whiteAlpha.200"
               _hover={{
-                color: 'primary.400',
-                bg: 'blackAlpha.400',
+                color: 'primary.500',
+                bg: 'blackAlpha.800',
                 textDecoration: 'none',
               }}
               leftIcon={<BsInstagram />}
@@ -151,6 +149,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
           transform,
         }}
         sx={{
+          boxShadow: 'rgba(245, 245, 245, 0.35) 0px 5px 15px',
           backfaceVisibility: 'hidden',
         }}
         role="group"
@@ -191,6 +190,8 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
           flexDirection="column"
           justifyContent="space-between"
           width="100%"
+          bg="white"
+          color="blackAlpha.900"
         >
           <Box
             display="flex"
@@ -207,7 +208,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
             <Divider
               variant="solid"
               orientation="horizontal"
-              borderBottomColor="InactiveCaptionText"
+              borderBottomColor="blackAlpha.600"
             />
           </Box>
           <Box
@@ -241,9 +242,9 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
                 }}
                 variant="ghost"
                 fontSize="3xl"
-                color="primary.500"
+                color="blackAlpha.900"
                 _hover={{
-                  bg: 'blackAlpha.300',
+                  bg: 'blackAlpha.100',
                 }}
                 icon={<BsInfoCircle />}
               />
@@ -264,35 +265,23 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
   const workers = group1?.edges?.length === 3 ? group1 : group2
 
   return (
-    <Box
-      as="section"
-      position="relative"
-      px={'1rem'}
-      pb={'8rem'}
-      maxWidth="100vw"
-      overflow={'hidden'}
-      _before={{
-        content: "''",
-        position: 'absolute',
-        display: { base: 'hidden', sm: 'initial' },
-        width: '100vw',
-        height: { md: '90%', lg: '80%' },
-        top: { md: '5%', lg: '15%' },
-        left: 0,
-        // background: 'gray.200',
-        backgroundImage: `url(${texture})`,
-        backgroundRepeat: 'repeat',
-        backgroundSize: 'cover',
-        filter: 'brightness(1.1)',
-        clipPath: {
-          base: '',
-          md: 'polygon(50% 6%, 100% 0, 100% 100%, 85% 95%, 15% 95%, 0 100%, 0 0)',
-          lg: 'polygon(50% 9%, 100% 0, 100% 100%, 85% 95%, 15% 95%, 0 100%, 0 0)',
-          xl: 'polygon(50% 13%, 100% 0, 100% 100%, 65% 85%, 35% 85%, 0 100%, 0 0)',
-        },
-      }}
-    >
-      {/* <Box
+    <Container maxW="10xl">
+      <Box
+        as="section"
+        position="relative"
+        px={'1rem'}
+        pb={'8rem'}
+        pt={'1rem'}
+        mx="auto"
+        overflow={'hidden'}
+        sx={{
+          boxShadow: {
+            base: 'unset',
+            sm: 'rgba(200, 200, 93, 0.13) 0px 15px 20px -20px, rgba(255, 255, 255, 0.2) 0px 2px 10px 3px, rgba(255, 255, 255, 0.2) 0px -2px 10px 3px',
+          },
+        }}
+      >
+        {/* <Box
         sx={{
           position: 'absolute',
           width: '105vw',
@@ -316,7 +305,6 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
           imgStyle={{ filter: 'brightness(0.8)' }}
         />
       </Box> */}
-      <Container maxW="10xl" px={{ base: '1.5rem' }}>
         <Heading
           as="h4"
           ml={['2rem', '4rem']}
@@ -349,8 +337,8 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
             <ProfileCard edge={edge} />
           ))}
         </Flex>
-      </Container>
-    </Box>
+      </Box>
+    </Container>
   )
 }
 
