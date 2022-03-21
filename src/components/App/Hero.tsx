@@ -93,16 +93,17 @@ export const Hero: React.FC = () => {
             fontSize={{ base: 'xl' }}
             background="primary.600"
             boxShadow="md"
+            border="3px solid transparent"
             as={Link}
             textDecoration="none"
             href="#contact-us"
             sx={{
               padding: '1.5rem 2rem',
               '&:hover': {
-                backgroundColor: 'primary.600',
+                backgroundColor: 'transparent',
+                border: '3px solid var(--chakra-colors-primary-600)',
                 textDecoration: 'none',
                 color: 'black',
-                boxShadow: 'lg',
               },
               '&:active, &:focus': {
                 backgroundColor: 'primary.700',
