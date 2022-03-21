@@ -10,7 +10,8 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { FaMapPin, FaMobileAlt, FaRegEnvelope } from 'react-icons/fa'
-import clientProfile from '../../../data/client-profile.json'
+// @ts-expect-error this is a yaml file
+import clientProfile from '../data/client-profile.yml'
 
 export interface ContactProps {}
 
@@ -46,9 +47,7 @@ const Contact: React.FC<ContactProps> = (props) => {
         </Text>
         <Stack
           direction={['column', 'row']}
-          divider={
-            <StackDivider borderColor="gray.200" orientation="veritical" />
-          }
+          divider={<StackDivider borderColor="gray.200" />}
           spacing="1rem"
         >
           <Text align="center">

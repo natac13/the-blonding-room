@@ -33,7 +33,7 @@ const AboutUs: React.FC = () => {
       >
         <Heading
           as="h2"
-          fontSize={{ base: '6xl', sm: '9xl' }}
+          fontSize={{ base: '6xl', sm: '7xl', lg: '8xl', xl: '9xl' }}
           fontWeight={200}
           textAlign="center"
         >

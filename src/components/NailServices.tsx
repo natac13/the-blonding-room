@@ -9,7 +9,7 @@ import {
   HStack,
   VStack,
 } from '@chakra-ui/react'
-import { CheckIcon } from '@chakra-ui/icons'
+import { FaCheckCircle } from 'react-icons/fa'
 import { useAllNailServices } from '../graphql/useAllNailServices'
 import { useParallax } from 'react-scroll-parallax'
 import { StaticImage } from 'gatsby-plugin-image'
@@ -19,9 +19,9 @@ const NailServieces: React.FC = () => {
 
   const parallax = useParallax<HTMLDivElement>({
     speed: 9,
-    opacity: [0.1, 1],
-    scale: [0.6, 1],
-    translateX: [-30, 10],
+    opacity: [0.1, 1.4],
+    scale: [0.6, 1.1],
+    translateX: [-50, 10],
   })
 
   return (
@@ -51,7 +51,7 @@ const NailServieces: React.FC = () => {
         display={{ base: 'none', sm: 'block' }}
         position="absolute"
         width="20%"
-        mt={'3rem'}
+        mt={{ sm: '-6rem' }}
       >
         <StaticImage src="../images/inspiring-sign.jpg" alt="Inspring sign" />
       </Box>
@@ -59,7 +59,7 @@ const NailServieces: React.FC = () => {
         <Heading
           as="h2"
           color="blackAlpha.800"
-          fontSize={{ base: '6xl', sm: '9xl' }}
+          fontSize={{ base: '6xl', sm: '7xl', lg: '8xl', xl: '9xl' }}
         >
           Nail Services
         </Heading>
@@ -78,9 +78,9 @@ const NailServieces: React.FC = () => {
               justifyContent="center"
             >
               <Text
-                fontWeight={200}
+                fontWeight={300}
                 textTransform="uppercase"
-                fontSize={{ base: '3xl', sm: '4xl' }}
+                fontSize={{ base: '3xl', xl: '4xl' }}
                 color="blackAlpha.900"
               >
                 {edge?.node?.title}
@@ -96,22 +96,22 @@ const NailServieces: React.FC = () => {
             <SimpleGrid columns={{ base: 2, md: 2, lg: 3 }} spacing={10}>
               {edge?.node?.items.map((item) => (
                 <HStack key={item.item} align={'top'} width="100%">
-                  <Box color={'primary.700'} px={2}>
-                    <Icon as={CheckIcon} />
+                  <Box color={'primary.700'} px={2} mt={{ base: '0.35rem' }}>
+                    <Icon as={FaCheckCircle} />
                   </Box>
                   <VStack align={'start'} width="100%">
                     <Text
-                      fontWeight={'400'}
+                      fontWeight={300}
                       color="blackAlpha.800"
-                      fontSize={{ base: 'xl', sm: '2xl' }}
+                      fontSize={{ base: 'xl', xl: '2xl' }}
                     >
                       {item.item}
                     </Text>
                     <Text
                       color="black"
-                      fontWeight={500}
+                      fontWeight={400}
                       textAlign="center"
-                      fontSize={{ base: 'lg', sm: 'xl' }}
+                      fontSize={{ base: 'lg', xl: 'xl' }}
                     >
                       {item.price}
                     </Text>

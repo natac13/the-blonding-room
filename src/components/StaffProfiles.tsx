@@ -24,7 +24,7 @@ export interface StaffProfilesProps {}
 
 const Card = animated(Box)
 
-const cardWidth = 400
+const cardWidth = 370
 const cardHeight = 150
 
 const StyledCard: React.FC<
@@ -56,7 +56,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
   const { transform, opacity, width } = useSpring({
     opacity: flipped ? 1 : 0,
     transform: `perspective(600px) rotateY(${flipped ? -180 : 0}deg)`,
-    width: `${flipped ? '36rem' : '20rem'}`,
+    width: `${flipped ? '30rem' : '22rem'}`,
     config: { mass: 5, tension: 500, friction: 80 },
   })
   return (
@@ -144,6 +144,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
         )}
       </StyledCard>
       <StyledCard
+        // width={{ base: '95vw', sm: '100%' }}
         style={{
           opacity: opacity.to((o) => 1 - o),
           transform,
@@ -269,48 +270,23 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
       <Box
         as="section"
         position="relative"
-        px={'1rem'}
         pb={'8rem'}
         pt={'1rem'}
         mx="auto"
         overflow={'hidden'}
-        sx={{
-          boxShadow: {
-            base: 'unset',
-            sm: 'rgba(200, 200, 93, 0.13) 0px 15px 20px -20px, rgba(255, 255, 255, 0.2) 0px 2px 10px 3px, rgba(255, 255, 255, 0.2) 0px -2px 10px 3px',
-          },
-        }}
+        // sx={{
+        //   boxShadow: {
+        //     base: 'unset',
+        //     sm: 'rgba(245, 245, 245, 0.15) 0px 2px 10px, rgba(245, 245, 245, 0.15) 0px -2px 10px',
+        //   },
+        // }}
       >
-        {/* <Box
-        sx={{
-          position: 'absolute',
-          width: '105vw',
-          height: '80%',
-          top: '55%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          // background: 'gray.200',
-          // backgroundImage: `url(${texture})`,
-          // backgroundRepeat: 'repeat',
-          // backgroundSize: 'cover',
-          clipPath: [
-            '',
-            'polygon(50% 13%, 100% 0, 100% 100%, 65% 85%, 35% 85%, 0 100%, 0 0)',
-          ],
-        }}
-      >
-        <StaticImage
-          src="../images/texture-1.jpg"
-          alt="background texture white fabric"
-          imgStyle={{ filter: 'brightness(0.8)' }}
-        />
-      </Box> */}
         <Heading
           as="h4"
           ml={['2rem', '4rem']}
           mb={'2rem'}
           color="gray.100"
-          fontSize={{ base: '4xl', sm: '6xl' }}
+          fontSize={{ base: '4xl', sm: '5xl', xl: '6xl' }}
         >
           Say Hello!
         </Heading>
@@ -328,7 +304,6 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
         </Flex>
         <Flex
           gap="10vh"
-          flexDirection="row"
           flexDirection="row"
           wrap="wrap"
           justifyContent="space-around"

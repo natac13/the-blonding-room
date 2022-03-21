@@ -60,13 +60,13 @@ const HairServices: React.FC = () => {
       <Stack spacing={4} as={Container} maxW={'3xl'} textAlign={'center'}>
         <Heading
           as="h2"
-          fontSize={{ base: '6xl', sm: '9xl' }}
+          fontSize={{ base: '6xl', sm: '7xl', lg: '8xl', xl: '9xl' }}
           fontWeight={200}
           textAlign="center"
         >
           Hair Services
         </Heading>
-        <Text color={'whiteAlpha.700'} fontSize={{ base: 'xl', sm: '2xl' }}>
+        <Text color={'whiteAlpha.700'} fontSize={{ base: 'xl', xl: '2xl' }}>
           Pricing personalize to each independant stylist.
           <br />
           All services include olaplex (Blonding Agent).
@@ -91,10 +91,11 @@ const HairServices: React.FC = () => {
               <Center width={{ base: '100%', md: '50%' }}>
                 <Heading
                   fontWeight={200}
-                  fontSize={{ base: '6xl', sm: '7xl', xl: '8xl' }}
+                  fontSize={{ base: '5xl', sm: '6xl', lg: '7xl', xl: '8xl' }}
                   mb={{ base: 6, md: 0 }}
                   color="white"
-                  textAlign={{ base: 'center', sm: 'left' }}
+                  // @ts-expect-error this is fine
+                  textAlign={{ base: 'center !important', sm: 'left' }}
                 >
                   {edge?.node?.title}
                 </Heading>
@@ -114,13 +115,13 @@ const HairServices: React.FC = () => {
                         fontWeight={'400'}
                         textTransform={'uppercase'}
                         color="white"
-                        fontSize={{ base: 'xl', sm: '2xl' }}
+                        fontSize={{ base: 'xl', xl: '2xl' }}
                       >
                         {item?.title}
                       </Text>
                       <Text
                         color={'whiteAlpha.800'}
-                        fontSize={{ base: 'lg', sm: 'xl' }}
+                        fontSize={{ base: 'lg', xl: 'xl' }}
                       >
                         {item.description}
                       </Text>
