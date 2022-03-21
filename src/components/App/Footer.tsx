@@ -64,12 +64,12 @@ export const Footer: React.FC = () => {
           © {new Date().getFullYear()} {clientProfile.name}. All rights reserved
         </Text>
         <Stack direction={'row'} spacing={6} order={[1, 2]} mb={['2rem', 0]}>
-          <SocialButton label={'Twitter'} href={'#'}>
+          {/* <SocialButton label={'Twitter'} href={'#'}>
             <FaTwitter />
           </SocialButton>
           <SocialButton label={'YouTube'} href={'#'}>
             <FaYoutube />
-          </SocialButton>
+          </SocialButton> */}
           <SocialButton
             label={'Instagram'}
             href={clientProfile.socialMedia.instagram}
