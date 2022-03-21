@@ -1,10 +1,10 @@
-require(`dotenv`).config({
+require('dotenv').config({
   path: `.env.${process.env.NODE_ENV}`,
 })
 
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://www.theblondingroom.ca`,
+    siteUrl: 'https://www.theblondingroom.ca',
     author: 'Sean Campbell <sean.campbell13@gmail.com>',
     title: 'The Blonding Room',
   },
@@ -14,15 +14,15 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-sitemap',
     {
-      resolve: `gatsby-plugin-robots-txt`,
+      resolve: 'gatsby-plugin-robots-txt',
       options: {
         resolveEnv: () => process.env.GATSBY_ENV,
         env: {
           development: {
-            policy: [{ userAgent: `*`, disallow: [`/`] }],
+            policy: [{ userAgent: '*', disallow: ['/'] }],
           },
           production: {
-            policy: [{ userAgent: `*`, allow: `/` }],
+            policy: [{ userAgent: '*', allow: '/' }],
           },
         },
       },
@@ -39,7 +39,7 @@ module.exports = {
         display: 'minimal-ui',
       },
     },
-    `gatsby-plugin-gatsby-cloud`,
+    'gatsby-plugin-gatsby-cloud',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
@@ -50,12 +50,12 @@ module.exports = {
       },
       __key: 'images',
     },
-    `gatsby-transformer-yaml`,
+    'gatsby-transformer-yaml',
     // `gatsby-transformer-json`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: 'gatsby-source-filesystem',
       options: {
-        path: `./src/data/`,
+        path: './src/data/',
       },
     },
     {
