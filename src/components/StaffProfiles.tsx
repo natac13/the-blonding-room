@@ -97,7 +97,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
             borderRadius: '24px',
           },
           backfaceVisibility: 'hidden' as const,
-          zIndex: 1,
+          zIndex: flipped ? 1 : 0,
         }}
         overflowY="scroll"
       >
