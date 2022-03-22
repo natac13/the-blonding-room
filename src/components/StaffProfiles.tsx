@@ -16,8 +16,6 @@ import * as React from 'react'
 import { BsInfoCircle, BsInstagram } from 'react-icons/bs'
 import { animated, useSpring } from 'react-spring'
 import { useAllStaffProfiles } from '../graphql/useAllStaffProfiles'
-// import texture from '../images/gold-texture.jpg'
-import texture from '../images/texture-1.jpg'
 import { StaffProfilesYamlEdge } from '../types/generated-gatsby'
 
 export interface StaffProfilesProps {}

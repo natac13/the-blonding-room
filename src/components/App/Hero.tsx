@@ -44,10 +44,10 @@ export const Hero: React.FC = () => {
     >
       <Box
         flex={{ lg: '1 0' }}
-        transform={{ base: 'scale(1.075)', lg: 'unset' }}
         mt={{ base: '1rem', lg: '-2rem' }}
         pb={{ lg: '1rem' }}
         boxShadow={{ base: 'rgba(203, 196, 192, 1) 0px 2px 5px', lg: 'none' }}
+        overflow="hidden"
       >
         <StaticImage
           src="../../images/new-hero.png"
