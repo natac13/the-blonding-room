@@ -69,28 +69,45 @@ const Contact: React.FC<ContactProps> = (props) => {
           justifyContent="space-evenly"
           gap={['6rem', '0']}
         >
-          <Stack direction="column" alignItems="center">
+          <Stack
+            direction="column"
+            alignItems="center"
+            width={{ base: '100%' }}
+          >
             <FaMapPin size={30} />
             <Text fontSize="xl" fontWeight="thin" align="center">
               LOCATION
             </Text>
-            <Text noOfLines={2} align="center">
+            <Text noOfLines={2} align="center" width={{ base: '100%' }}>
               {clientProfile.address}
             </Text>
           </Stack>
-          <Stack direction="column" alignItems="center">
+          <Stack
+            direction="column"
+            alignItems="center"
+            justifyContent="center"
+            width={{ base: '100%' }}
+          >
             <FaMobileAlt size={30} />
             <Text fontSize="xl" fontWeight="thin">
               PHONE
             </Text>
-            <Text align="center">{clientProfile.phoneNumber}</Text>
+            <Text align="center" width={{ base: '100%' }}>
+              {clientProfile.phoneNumber}
+            </Text>
           </Stack>
-          <Stack direction="column" alignItems="center">
+          <Stack
+            direction="column"
+            alignItems="center"
+            width={{ base: '100%' }}
+          >
             <FaRegEnvelope size={30} />
             <Text fontSize="xl" fontWeight="thin">
               EMAIL
             </Text>
-            <Text align="center">{clientProfile.emailAddress}</Text>
+            <Text align="center" width={{ base: '100%' }}>
+              {clientProfile.emailAddress}
+            </Text>
           </Stack>
         </SimpleGrid>
       </Center>
