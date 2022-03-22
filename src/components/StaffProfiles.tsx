@@ -152,6 +152,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
         sx={{
           boxShadow: 'rgba(245, 245, 245, 0.35) 0px 5px 15px',
           backfaceVisibility: 'hidden',
+          '-webkit-backface-visibility': 'hidden',
         }}
         role="group"
       >
