@@ -4,6 +4,7 @@ import {
   Box,
   Center,
   Heading,
+  Link,
   SimpleGrid,
   Stack,
   StackDivider,
@@ -70,42 +71,82 @@ const Contact: React.FC<ContactProps> = (props) => {
           gap={['6rem', '0']}
         >
           <Stack
+            role="group"
             direction="column"
             alignItems="center"
             width={{ base: '100%' }}
+            as={Link}
+            isExternal
+            _hover={{
+              textDecoration: 'none',
+            }}
+            href="https://www.google.com/maps?q=21578+Richmond+Street,+Arva,+ON,+Canada"
           >
             <FaMapPin size={30} />
             <Text fontSize="xl" fontWeight="thin" align="center">
               LOCATION
             </Text>
-            <Text noOfLines={2} align="center" width={{ base: '100%' }}>
+            <Text
+              noOfLines={2}
+              align="center"
+              width={{ base: '100%' }}
+              _groupHover={{
+                textDecoration: 'underline',
+              }}
+            >
               {clientProfile.address}
             </Text>
           </Stack>
           <Stack
+            role="group"
             direction="column"
             alignItems="center"
             justifyContent="center"
             width={{ base: '100%' }}
+            as={Link}
+            isExternal
+            _hover={{
+              textDecoration: 'none',
+            }}
+            href={`tel:${clientProfile?.phoneNumber?.replace('-', '')}`}
           >
             <FaMobileAlt size={30} />
             <Text fontSize="xl" fontWeight="thin">
               PHONE
             </Text>
-            <Text align="center" width={{ base: '100%' }}>
+            <Text
+              align="center"
+              width={{ base: '100%' }}
+              _groupHover={{
+                textDecoration: 'underline',
+              }}
+            >
               {clientProfile.phoneNumber}
             </Text>
           </Stack>
           <Stack
+            role="group"
             direction="column"
             alignItems="center"
             width={{ base: '100%' }}
+            as={Link}
+            isExternal
+            href={`mailto:${clientProfile?.emailAddress}`}
+            _hover={{
+              textDecoration: 'none',
+            }}
           >
             <FaRegEnvelope size={30} />
             <Text fontSize="xl" fontWeight="thin">
               EMAIL
             </Text>
-            <Text align="center" width={{ base: '100%' }}>
+            <Text
+              align="center"
+              width={{ base: '100%' }}
+              _groupHover={{
+                textDecoration: 'underline',
+              }}
+            >
               {clientProfile.emailAddress}
             </Text>
           </Stack>
