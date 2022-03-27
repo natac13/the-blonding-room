@@ -1,19 +1,14 @@
 import * as React from 'react'
-import { Box, Button, Link, Text, useMediaQuery } from '@chakra-ui/react'
+import { Box, Button, Link, Text } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 import { useParallax } from 'react-scroll-parallax'
+import Countdown from '../Countdown'
 
 export const Hero: React.FC = () => {
-  const [isMobile] = useMediaQuery('(max-width: 30em)')
   const parallax = useParallax<HTMLDivElement>({
-    speed: isMobile ? 20 : 16,
-    opacity: [2, 0],
-    translateY: ['-70%', '190%'],
+    opacity: [4, 0.2],
+    scale: [0.8, 1.15],
   })
-
-  // const opacity = useParallax<HTMLDivElement>({
-  //   // opacity: [-1, 0.88],
-  // })
 
   return (
     <Box
@@ -70,7 +65,8 @@ export const Hero: React.FC = () => {
         mb={{ base: '6rem', sm: '9rem', lg: '0' }}
       >
         <Box
-          my={{ base: '2rem', lg: '0' }}
+          mt={{ base: '2rem', lg: '0' }}
+          mb={{ base: '1rem' }}
           px={{ base: '0.5rem' }}
           mx={{ lg: '2rem' }}
         >
@@ -117,6 +113,7 @@ export const Hero: React.FC = () => {
             Book Now!
           </Button>
         </div>
+        <Countdown />
       </Box>
     </Box>
   )
