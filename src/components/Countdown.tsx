@@ -32,7 +32,6 @@ const endTime = new Date('2022-04-09T09:00:00')
 
 const Countdown: React.FC<CountdownProps> = (props) => {
   const {} = props
-  const [hasMounted, setHasMounted] = React.useState(false)
   const [timer, setTimer] = React.useState({
     seconds: 0,
     minutes: 0,
@@ -41,10 +40,6 @@ const Countdown: React.FC<CountdownProps> = (props) => {
   })
 
   React.useEffect(() => {
-    if (!hasMounted) {
-      setHasMounted(true)
-    }
-
     const timer = setInterval(() => {
       const now = new Date()
       const remainingTime = getTime(endTime) - getTime(now)
@@ -78,24 +73,34 @@ const Countdown: React.FC<CountdownProps> = (props) => {
   const isPassedOpening = isAfter(today, endTime)
 
   return (
-    hasMounted && (
-      <Box mt={{ base: '2rem' }} display={isPassedOpening ? 'none' : 'block'}>
-        <Text
-          align={{ base: 'center' }}
-          mb={{ base: '1rem' }}
-          fontSize={{ base: '2xl' }}
-          fontFamily="heading"
-        >
-          Countdown to Opening Day!
-        </Text>
-        <Box display={{ base: 'flex' }} gap={{ base: '1rem' }}>
-          <TimeDisplay dimension="Days" time={timer.days} />
-          <TimeDisplay dimension="Hours" time={timer.hours} />
-          <TimeDisplay dimension="Minutes" time={timer.minutes} />
-          <TimeDisplay dimension="Seconds" time={timer.seconds} />
-        </Box>
+    <Box mt={{ base: '2rem' }} display={isPassedOpening ? 'none' : 'block'}>
+      <Text
+        align={{ base: 'center' }}
+        mb={{ base: '1rem' }}
+        fontSize={{ base: '2xl' }}
+        fontFamily="heading"
+      >
+        Countdown to Opening Day!
+      </Text>
+      <Box display={{ base: 'flex' }} gap={{ base: '1rem' }}>
+        <TimeDisplay
+          dimension="Days"
+          time={timer.days === 0 ? '/' : timer.days}
+        />
+        <TimeDisplay
+          dimension="Hours"
+          time={timer.hours === 0 ? '/' : timer.hours}
+        />
+        <TimeDisplay
+          dimension="Minutes"
+          time={timer.minutes === 0 ? '/' : timer.minutes}
+        />
+        <TimeDisplay
+          dimension="Seconds"
+          time={timer.seconds === 0 ? '/' : timer.seconds}
+        />
       </Box>
-    )
+    </Box>
   )
 }
 
