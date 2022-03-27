@@ -13,8 +13,8 @@ const dayInMili = hourInMili * 24
 function TimeDisplay({ dimension, time }) {
   return (
     <Stack align={{ base: 'center' }}>
-      <Text>{time}</Text>
-      <Text>{dimension}</Text>
+      <Text fontSize={{ base: 'lg', md: '2xl' }}>{time}</Text>
+      <Text fontSize={{ baes: 'md', md: 'lg' }}>{dimension}</Text>
     </Stack>
   )
 }
