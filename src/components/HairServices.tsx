@@ -67,9 +67,9 @@ const HairServices: React.FC = () => {
           Hair Services
         </Heading>
         <Text color={'whiteAlpha.700'} fontSize={{ base: 'xl', xl: '2xl' }}>
-          Pricing personalize to each independant stylist.
+          Pricing is personalized to each independent stylist.
           <br />
-          All services include olaplex (Blonding Agent).
+          All services include olaplex (Bonding Agent).
         </Text>
       </Stack>
 
