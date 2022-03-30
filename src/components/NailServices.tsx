@@ -13,10 +13,15 @@ import { FaCheckCircle } from 'react-icons/fa'
 import { useAllNailServices } from '../graphql/useAllNailServices'
 import { useParallax } from 'react-scroll-parallax'
 import { StaticImage } from 'gatsby-plugin-image'
+import { PhotoGallery } from './PhotoGallery'
+import { useAllNailPhotos } from '../graphql/useAllNailPhotos'
 
 const NailServieces: React.FC = () => {
   const nailServices = useAllNailServices()?.allNailServicesYaml?.edges
 
+  const nailPhotos = useAllNailPhotos()?.photos?.edges?.map(
+    (edge) => edge?.node?.childImageSharp
+  )
   const parallax = useParallax<HTMLDivElement>({
     speed: 9,
     opacity: [0.1, 1.4],
@@ -122,6 +127,9 @@ const NailServieces: React.FC = () => {
           </Box>
         ))}
       </Container>
+      <Box pb={'2rem'} bgColor="white">
+        <PhotoGallery photos={nailPhotos} />
+      </Box>
     </Box>
   )
 }

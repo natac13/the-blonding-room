@@ -15,6 +15,8 @@ import { CheckIcon } from '@chakra-ui/icons'
 import { useAllHairServices } from '../graphql/useAllHairServices'
 import { useParallax } from 'react-scroll-parallax'
 import { StaticImage } from 'gatsby-plugin-image'
+import { PhotoGallery } from './PhotoGallery'
+import { useAllHairPhotos } from '../graphql/useAllHairPhotos'
 
 const HairServices: React.FC = () => {
   const hairServices = useAllHairServices()?.allHairServicesYaml?.edges
@@ -25,6 +27,9 @@ const HairServices: React.FC = () => {
     scale: [0.5, 1],
     // disabled: isMobile,
   })
+  const hairPhotos = useAllHairPhotos()?.hairPhotos?.edges?.map(
+    (edge) => edge?.node?.childImageSharp
+  )
 
   return (
     <Box
@@ -140,6 +145,9 @@ const HairServices: React.FC = () => {
           </Box>
         ))}
       </Container>
+      <Box pb={'2rem'} bgColor="gray.900">
+        <PhotoGallery photos={hairPhotos} />
+      </Box>
     </Box>
   )
 }

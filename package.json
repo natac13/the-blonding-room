@@ -16,6 +16,7 @@
     "gen": "graphql-codegen --config .graphqlrc.yml"
   },
   "dependencies": {
+    "@browniebroke/gatsby-image-gallery": "^7.0.5",
     "@chakra-ui/gatsby-plugin": "^2.0.3",
     "@chakra-ui/icons": "^1.1.5",
     "@chakra-ui/react": "^1.8.3",

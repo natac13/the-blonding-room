@@ -4452,10 +4452,20 @@ export type AboutDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AboutDataQuery = { __typename?: 'Query', aboutData?: { __typename?: 'DataYaml', about?: { __typename?: 'DataYamlAbout', dream?: string | null, goal?: string | null, main?: string | null, secondary?: string | null } | null } | null };
 
+export type AllHairPhotosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllHairPhotosQuery = { __typename?: 'Query', hairPhotos: { __typename?: 'FileConnection', edges: Array<{ __typename?: 'FileEdge', node: { __typename?: 'File', name: string, id: string, publicURL?: string | null, childImageSharp?: { __typename?: 'ImageSharp', thumb: any, full: any } | null } }> } };
+
 export type AllHairServicesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AllHairServicesQuery = { __typename?: 'Query', allHairServicesYaml: { __typename?: 'HairServicesYamlConnection', edges: Array<{ __typename?: 'HairServicesYamlEdge', node: { __typename?: 'HairServicesYaml', title?: string | null, items?: Array<{ __typename?: 'HairServicesYamlItems', description?: string | null, title?: string | null } | null> | null } }> } };
+
+export type AllNailPhotosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllNailPhotosQuery = { __typename?: 'Query', photos: { __typename?: 'FileConnection', edges: Array<{ __typename?: 'FileEdge', node: { __typename?: 'File', name: string, id: string, publicURL?: string | null, childImageSharp?: { __typename?: 'ImageSharp', thumb: any, full: any } | null } }> } };
 
 export type AllNailServiesQueryVariables = Exact<{ [key: string]: never; }>;
 
