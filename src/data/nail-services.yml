@@ -38,16 +38,16 @@
       price: $40
     - item: Gel Polish Pedicure
       price: $55
-- title: Brow Styling
-  items:
-    - item: Brow Lamination
-      price: $65
-    - item: Brow Henna
-      price: $45
-    - item: Brow Tint
-      price: $15
-    - item: Add Waxing Clean Up
-      price: $10
+# - title: Brow Styling
+#   items:
+#     - item: Brow Lamination
+#       price: $65
+#     - item: Brow Henna
+#       price: $45
+#     - item: Brow Tint
+#       price: $15
+#     - item: Add Waxing Clean Up
+#       price: $10
 - title: Waxing
   items:
     - item: Eyebrows
