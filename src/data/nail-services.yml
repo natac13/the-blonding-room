@@ -48,13 +48,13 @@
 #       price: $15
 #     - item: Add Waxing Clean Up
 #       price: $10
-- title: Waxing
-  items:
-    - item: Eyebrows
-      price: $15
-    - item: Upper Lip
-      price: $6
-    - item: Chin
-      price: $8
-    - item: Underarm
-      price: $20
+# - title: Waxing
+#   items:
+#     - item: Eyebrows
+#       price: $15
+#     - item: Upper Lip
+#       price: $6
+#     - item: Chin
+#       price: $8
+#     - item: Underarm
+#       price: $20
