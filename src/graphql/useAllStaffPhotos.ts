@@ -15,7 +15,7 @@ export const useAllStaffPhotos = (): AllStaffPhotosQuery => {
                 thumb: gatsbyImageData(layout: FIXED, width: 300, height: 350)
                 full: gatsbyImageData(layout: FULL_WIDTH)
                 # bio: gatsbyImageData(layout: CONSTRAINED)
-                bio: gatsbyImageData(layout: FIXED, width: 370, height: 430)
+                bio: gatsbyImageData(layout: FIXED, width: 370, height: 520)
               }
             }
           }

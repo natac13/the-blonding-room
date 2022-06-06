@@ -24,7 +24,7 @@ export interface StaffProfilesProps {}
 const Card = animated(Box)
 
 const cardWidth = 370
-const cardHeight = 230
+const cardHeight = 320
 
 const StyledCard: React.FC<
   {
