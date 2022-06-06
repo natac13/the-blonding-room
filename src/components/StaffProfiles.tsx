@@ -10,11 +10,12 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react'
-import { StaticImage } from 'gatsby-plugin-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import isTouchDevice from 'is-touch-device'
 import * as React from 'react'
 import { BsInfoCircle, BsInstagram } from 'react-icons/bs'
 import { animated, useSpring } from 'react-spring'
+import { useAllStaffPhotos } from '../graphql/useAllStaffPhotos'
 import { useAllStaffProfiles } from '../graphql/useAllStaffProfiles'
 import { StaffProfilesYamlEdge } from '../types/generated-gatsby'
 
@@ -23,7 +24,7 @@ export interface StaffProfilesProps {}
 const Card = animated(Box)
 
 const cardWidth = 370
-const cardHeight = 150
+const cardHeight = 320
 
 const StyledCard: React.FC<
   {
@@ -57,6 +58,19 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
     width: `${flipped ? '30rem' : '22rem'}`,
     config: { mass: 5, tension: 500, friction: 80 },
   })
+
+  const staffPhotos = useAllStaffPhotos()?.photos?.edges
+
+  // const staffPhotos = useAllStaffPhotos()?.photos?.edges?.map(
+  //   (edge) => edge?.node?.childImageSharp
+  // )
+
+  const staffImage = staffPhotos?.find((photoEdge) =>
+    photoEdge?.node?.name?.includes(edge?.node?.name?.toLowerCase())
+  )
+  const image = getImage(staffImage?.node?.childImageSharp?.bio)
+  console.log({ staffPhotos, staffImage, image, edge })
+
   return (
     <Card
       style={{
@@ -156,6 +170,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
       >
         <Box
           flex="1 0"
+          height={cardWidth}
           sx={{
             '& img.avatar': {
               filter: `brightness(${isTouchDevice ? 0.9 : 0.7}) blur(0.5px)`,
@@ -171,16 +186,16 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
             },
           }}
         >
-          <StaticImage
-            src="../images/jonathan-borba-XJt51hAa3z8-unsplash.jpg"
-            layout="fixed"
-            width={cardWidth}
-            height={cardWidth}
+          <GatsbyImage
+            image={image}
             alt="Placeholer"
             objectFit="cover"
             imgClassName="avatar"
             imgStyle={{
               maxWidth: '95vw',
+              maxHeight: '600px',
+              // height: cardWidth,
+              // width: cardWidth,
             }}
           />
         </Box>
@@ -199,6 +214,7 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
             pt="1rem"
             px="1rem"
             justifyContent={'center'}
+            height={cardHeight - 100}
           >
             <Text as="h4" fontSize="4xl" fontWeight={200}>
               {edge?.node?.name}

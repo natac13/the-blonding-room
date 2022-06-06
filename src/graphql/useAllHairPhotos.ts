@@ -6,10 +6,8 @@ export const useAllHairPhotos = (): AllHairPhotosQuery => {
     graphql`
       query AllHairPhotos {
         hairPhotos: allFile(
-          filter: {
-            relativeDirectory: { eq: "gallery-1" }
-            name: { regex: "/hair/" }
-          }
+          filter: { relativeDirectory: { eq: "gallery-2/hair" } }
+          sort: { order: ASC, fields: name }
         ) {
           edges {
             node {

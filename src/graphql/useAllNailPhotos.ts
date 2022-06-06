@@ -6,10 +6,8 @@ export const useAllNailPhotos = (): AllNailPhotosQuery => {
     graphql`
       query AllNailPhotos {
         photos: allFile(
-          filter: {
-            relativeDirectory: { eq: "gallery-1" }
-            name: { regex: "/nail/" }
-          }
+          filter: { relativeDirectory: { eq: "gallery-2/nail" } }
+          sort: { order: ASC, fields: name }
         ) {
           edges {
             node {
