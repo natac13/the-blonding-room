@@ -17,6 +17,7 @@ import { useParallax } from 'react-scroll-parallax'
 import { StaticImage } from 'gatsby-plugin-image'
 import { PhotoGallery } from './PhotoGallery'
 import { useAllHairPhotos } from '../graphql/useAllHairPhotos'
+import { useAllSalonPhotos } from '../graphql/useAllSalonPhotos'
 
 const HairServices: React.FC = () => {
   const hairServices = useAllHairServices()?.allHairServicesYaml?.edges
@@ -30,6 +31,9 @@ const HairServices: React.FC = () => {
   const hairPhotos = useAllHairPhotos()?.hairPhotos?.edges?.map(
     (edge) => edge?.node?.childImageSharp
   )
+  const photos = useAllSalonPhotos()?.photos?.edges?.map(
+    (edge) => edge?.node?.childImageSharp
+  )
 
   return (
     <Box
@@ -40,6 +44,9 @@ const HairServices: React.FC = () => {
       position="relative"
       bg="gray.900"
     >
+      <Box pb={'2rem'} bgColor="gray.900">
+        <PhotoGallery photos={photos} />
+      </Box>
       <Box
         width={{ base: '60%', sm: '35%', md: '25%' }}
         ref={couchParallax.ref}

@@ -15,9 +15,11 @@ import isTouchDevice from 'is-touch-device'
 import * as React from 'react'
 import { BsInfoCircle, BsInstagram } from 'react-icons/bs'
 import { animated, useSpring } from 'react-spring'
+import { useAllStaffGroupPhotos } from '../graphql/useAllStaffGroupPhotos'
 import { useAllStaffPhotos } from '../graphql/useAllStaffPhotos'
 import { useAllStaffProfiles } from '../graphql/useAllStaffProfiles'
 import { StaffProfilesYamlEdge } from '../types/generated-gatsby'
+import { PhotoGallery } from './PhotoGallery'
 
 export interface StaffProfilesProps {}
 
@@ -69,7 +71,6 @@ const ProfileCard: React.FC<{ edge: StaffProfilesYamlEdge }> = (props) => {
     photoEdge?.node?.name?.includes(edge?.node?.name?.toLowerCase())
   )
   const image = getImage(staffImage?.node?.childImageSharp?.bio)
-  console.log({ staffPhotos, staffImage, image, edge })
 
   return (
     <Card
@@ -279,6 +280,9 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
 
   const owners = group1?.edges?.length === 3 ? group2 : group1
   const workers = group1?.edges?.length === 3 ? group1 : group2
+  const photos = useAllStaffGroupPhotos()?.photos?.edges?.map(
+    (edge) => edge?.node?.childImageSharp
+  )
 
   return (
     <Container maxW="10xl">
@@ -327,6 +331,9 @@ const StaffProfiles: React.FC<StaffProfilesProps> = (props) => {
             <ProfileCard edge={edge} />
           ))}
         </Flex>
+      </Box>
+      <Box pb={'2rem'} bgColor="gray.900">
+        <PhotoGallery photos={photos} />
       </Box>
     </Container>
   )

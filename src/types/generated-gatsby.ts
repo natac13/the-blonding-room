@@ -4880,6 +4880,16 @@ export type AllNailServiesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type AllNailServiesQuery = { __typename?: 'Query', allNailServicesYaml: { __typename?: 'NailServicesYamlConnection', edges: Array<{ __typename?: 'NailServicesYamlEdge', node: { __typename?: 'NailServicesYaml', title?: string | null, items?: Array<{ __typename?: 'NailServicesYamlItems', item?: string | null, price?: string | null } | null> | null } }> } };
 
+export type AllSalonPhotosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllSalonPhotosQuery = { __typename?: 'Query', photos: { __typename?: 'FileConnection', edges: Array<{ __typename?: 'FileEdge', node: { __typename?: 'File', name: string, id: string, publicURL?: string | null, childImageSharp?: { __typename?: 'ImageSharp', thumb: any, full: any } | null } }> } };
+
+export type AllStaffGroupPhotosQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllStaffGroupPhotosQuery = { __typename?: 'Query', photos: { __typename?: 'FileConnection', edges: Array<{ __typename?: 'FileEdge', node: { __typename?: 'File', name: string, id: string, publicURL?: string | null, childImageSharp?: { __typename?: 'ImageSharp', thumb: any, full: any } | null } }> } };
+
 export type AllStaffPhotosQueryVariables = Exact<{ [key: string]: never; }>;
 
 
